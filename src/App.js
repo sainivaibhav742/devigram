@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login';
+
 import Signup from './pages/Signup';
 import Courses from './pages/Courses';
 import Campus from './pages/Campus';
@@ -10,11 +10,11 @@ import Blogs from './pages/Blogs';
 import Hire from './pages/Hire';
 import Counselling from './pages/Counselling';
 import CollegeDetails from './pages/CollegeDetails';
-import CounsellingDashboard from './pages/CounsellingDashboard';
+
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
 import Apply from './pages/Apply';
-import Dashboard from './pages/Dashboard';
+
 
 function App() {
   useEffect(() => {
@@ -49,7 +49,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/campus" element={<Campus />} />
@@ -58,11 +58,11 @@ function App() {
           <Route path="/hire" element={<Hire />} />
           <Route path="/counselling" element={<Counselling />} />
           <Route path="/college/:id" element={<CollegeDetails />} />
-          <Route path="/counselling-dashboard" element={<CounsellingDashboard />} />
+
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/apply" element={<Apply />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+
         </Routes>
       </div>
     </Router>
