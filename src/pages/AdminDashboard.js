@@ -1,10 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/admin-dashboard-pro.css';
+import '../styles/admin-messages.css';
+import '../styles/admin-modern-stats.css';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [timeFilter, setTimeFilter] = useState('Last 7 days');
+  const [messageFilter, setMessageFilter] = useState('All Messages');
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 1000);
+  };
+
+  const handleExportReport = () => {
+    alert('Exporting report...');
+  };
+
+  const handleAddStudent = () => {
+    alert('Add Student functionality');
+  };
+
+  const handleScheduleSession = () => {
+    alert('Schedule Session functionality');
+  };
+
+  const handleGenerateReport = () => {
+    alert('Generate Report functionality');
+  };
+
+  const handleSendNotification = () => {
+    alert('Send Notification functionality');
+  };
 
   return (
     <>
@@ -47,6 +77,13 @@ const AdminDashboard = () => {
               {!sidebarCollapsed && <span>Counselors</span>}
             </button>
             <button 
+              className={`nav-item ${activeSection === 'messages' ? 'active' : ''}`}
+              onClick={() => setActiveSection('messages')}
+            >
+              <i className="bi bi-envelope"></i>
+              {!sidebarCollapsed && <span>Messages</span>}
+            </button>
+            <button 
               className={`nav-item ${activeSection === 'analytics' ? 'active' : ''}`}
               onClick={() => setActiveSection('analytics')}
             >
@@ -73,72 +110,100 @@ const AdminDashboard = () => {
                   <p>Monitor student progress and platform performance</p>
                 </div>
                 <div className="header-actions">
-                  <select className="form-select">
+                  <select 
+                    className="form-select" 
+                    value={timeFilter} 
+                    onChange={(e) => setTimeFilter(e.target.value)}
+                  >
                     <option>Last 7 days</option>
                     <option>Last 30 days</option>
                     <option>This quarter</option>
                   </select>
-                  <button className="btn btn-primary">
+                  <button className="btn btn-primary" onClick={handleExportReport}>
                     <i className="bi bi-download"></i>
                     Export Report
                   </button>
                 </div>
               </div>
 
-              <div className="stats-grid">
-                <div className="stat-card">
-                  <div className="stat-icon">
-                    <i className="bi bi-people-fill"></i>
-                  </div>
-                  <div className="stat-content">
-                    <h3>1,247</h3>
-                    <p>Total Students</p>
-                    <div className="stat-trend">
-                      <i className="bi bi-arrow-up"></i>
-                      <span>+12% this month</span>
+              <div className="modern-stats-grid">
+                <div className="modern-stat-card primary-card">
+                  <div className="stat-header">
+                    <div className="stat-icon-modern">
+                      <i className="bi bi-people-fill"></i>
                     </div>
+                    <div className="stat-trend-modern positive">
+                      <i className="bi bi-arrow-up"></i>
+                      <span>+18%</span>
+                    </div>
+                  </div>
+                  <div className="stat-body">
+                    <h2 className="stat-number-modern">10,247</h2>
+                    <p className="stat-label-modern">Total Students</p>
+                    <span className="stat-period">this month</span>
+                  </div>
+                  <div className="stat-progress">
+                    <div className="progress-bar" style={{width: '75%'}}></div>
                   </div>
                 </div>
 
-                <div className="stat-card success">
-                  <div className="stat-icon">
-                    <i className="bi bi-person-video3"></i>
-                  </div>
-                  <div className="stat-content">
-                    <h3>45</h3>
-                    <p>Active Counselors</p>
-                    <div className="stat-trend">
-                      <i className="bi bi-arrow-up"></i>
-                      <span>+3 this week</span>
+                <div className="modern-stat-card success-card">
+                  <div className="stat-header">
+                    <div className="stat-icon-modern">
+                      <i className="bi bi-person-video3"></i>
                     </div>
+                    <div className="stat-trend-modern positive">
+                      <i className="bi bi-arrow-up"></i>
+                      <span>+8</span>
+                    </div>
+                  </div>
+                  <div className="stat-body">
+                    <h2 className="stat-number-modern">127</h2>
+                    <p className="stat-label-modern">Active Counselors</p>
+                    <span className="stat-period">this week</span>
+                  </div>
+                  <div className="stat-progress">
+                    <div className="progress-bar" style={{width: '85%'}}></div>
                   </div>
                 </div>
 
-                <div className="stat-card warning">
-                  <div className="stat-icon">
-                    <i className="bi bi-calendar-event"></i>
-                  </div>
-                  <div className="stat-content">
-                    <h3>156</h3>
-                    <p>Sessions Today</p>
-                    <div className="stat-trend">
-                      <i className="bi bi-arrow-up"></i>
-                      <span>+8% vs yesterday</span>
+                <div className="modern-stat-card warning-card">
+                  <div className="stat-header">
+                    <div className="stat-icon-modern">
+                      <i className="bi bi-calendar-event"></i>
                     </div>
+                    <div className="stat-trend-modern positive">
+                      <i className="bi bi-arrow-up"></i>
+                      <span>+15%</span>
+                    </div>
+                  </div>
+                  <div className="stat-body">
+                    <h2 className="stat-number-modern">342</h2>
+                    <p className="stat-label-modern">Sessions Today</p>
+                    <span className="stat-period">vs yesterday</span>
+                  </div>
+                  <div className="stat-progress">
+                    <div className="progress-bar" style={{width: '65%'}}></div>
                   </div>
                 </div>
 
-                <div className="stat-card info">
-                  <div className="stat-icon">
-                    <i className="bi bi-trophy-fill"></i>
-                  </div>
-                  <div className="stat-content">
-                    <h3>89%</h3>
-                    <p>Success Rate</p>
-                    <div className="stat-trend">
-                      <i className="bi bi-arrow-up"></i>
-                      <span>+2% this quarter</span>
+                <div className="modern-stat-card info-card">
+                  <div className="stat-header">
+                    <div className="stat-icon-modern">
+                      <i className="bi bi-trophy-fill"></i>
                     </div>
+                    <div className="stat-trend-modern positive">
+                      <i className="bi bi-arrow-up"></i>
+                      <span>+5%</span>
+                    </div>
+                  </div>
+                  <div className="stat-body">
+                    <h2 className="stat-number-modern">94%</h2>
+                    <p className="stat-label-modern">Success Rate</p>
+                    <span className="stat-period">this quarter</span>
+                  </div>
+                  <div className="stat-progress">
+                    <div className="progress-bar" style={{width: '94%'}}></div>
                   </div>
                 </div>
               </div>
@@ -202,19 +267,19 @@ const AdminDashboard = () => {
                       <h3>Quick Actions</h3>
                     </div>
                     <div className="quick-actions">
-                      <button className="action-btn">
+                      <button className="action-btn" onClick={handleAddStudent}>
                         <i className="bi bi-person-plus"></i>
                         <span>Add Student</span>
                       </button>
-                      <button className="action-btn">
+                      <button className="action-btn" onClick={handleScheduleSession}>
                         <i className="bi bi-calendar-plus"></i>
                         <span>Schedule Session</span>
                       </button>
-                      <button className="action-btn">
+                      <button className="action-btn" onClick={handleGenerateReport}>
                         <i className="bi bi-file-earmark-text"></i>
                         <span>Generate Report</span>
                       </button>
-                      <button className="action-btn">
+                      <button className="action-btn" onClick={handleSendNotification}>
                         <i className="bi bi-bell"></i>
                         <span>Send Notification</span>
                       </button>
@@ -572,6 +637,119 @@ const AdminDashboard = () => {
                   <div className="counselor-actions">
                     <button className="btn btn-outline-primary">View Schedule</button>
                     <button className="btn btn-primary">Assign Students</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'messages' && (
+            <div className="admin-content">
+              <div className="content-header">
+                <div>
+                  <h1>Application Messages</h1>
+                  <p>View and manage messages from application forms</p>
+                </div>
+                <div className="header-actions">
+                  <select 
+                    className="form-select" 
+                    value={messageFilter} 
+                    onChange={(e) => setMessageFilter(e.target.value)}
+                  >
+                    <option>All Messages</option>
+                    <option>Unread</option>
+                    <option>Today</option>
+                  </select>
+                  <button 
+                    className={`btn btn-primary ${refreshing ? 'disabled' : ''}`} 
+                    onClick={handleRefresh}
+                    disabled={refreshing}
+                  >
+                    <i className={`bi bi-arrow-clockwise ${refreshing ? 'spin' : ''}`}></i>
+                    {refreshing ? 'Refreshing...' : 'Refresh'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="messages-list">
+                <div className="message-card">
+                  <div className="message-header">
+                    <div className="message-info">
+                      <h5>Rahul Sharma</h5>
+                      <span className="message-email">rahul.sharma@email.com</span>
+                    </div>
+                    <div className="message-meta">
+                      <span className="message-time">2 hours ago</span>
+                      <span className="badge bg-success">New</span>
+                    </div>
+                  </div>
+                  <div className="message-content">
+                    <p><strong>Course:</strong> Full Stack Web Development</p>
+                    <p><strong>Phone:</strong> +91 9876543210</p>
+                    <p><strong>Experience:</strong> 2 years in frontend development</p>
+                    <p><strong>Message:</strong> I'm interested in transitioning to full-stack development and would like to know more about the course structure and placement assistance.</p>
+                  </div>
+                  <div className="message-actions">
+                    <button className="btn btn-outline-primary btn-sm" onClick={() => alert('Reply to Rahul Sharma')}>
+                      Reply
+                    </button>
+                    <button className="btn btn-primary btn-sm" onClick={() => alert('Contacting Rahul Sharma at +91 9876543210')}>
+                      Contact
+                    </button>
+                  </div>
+                </div>
+
+                <div className="message-card">
+                  <div className="message-header">
+                    <div className="message-info">
+                      <h5>Priya Patel</h5>
+                      <span className="message-email">priya.patel@email.com</span>
+                    </div>
+                    <div className="message-meta">
+                      <span className="message-time">5 hours ago</span>
+                      <span className="badge bg-warning">Pending</span>
+                    </div>
+                  </div>
+                  <div className="message-content">
+                    <p><strong>Course:</strong> Data Science & Analytics</p>
+                    <p><strong>Phone:</strong> +91 8765432109</p>
+                    <p><strong>Experience:</strong> Fresh graduate in Computer Science</p>
+                    <p><strong>Message:</strong> I'm a recent CS graduate looking to specialize in data science. Can you provide information about the curriculum and job prospects?</p>
+                  </div>
+                  <div className="message-actions">
+                    <button className="btn btn-outline-primary btn-sm" onClick={() => alert('Reply to Priya Patel')}>
+                      Reply
+                    </button>
+                    <button className="btn btn-primary btn-sm" onClick={() => alert('Contacting Priya Patel at +91 8765432109')}>
+                      Contact
+                    </button>
+                  </div>
+                </div>
+
+                <div className="message-card">
+                  <div className="message-header">
+                    <div className="message-info">
+                      <h5>Amit Kumar</h5>
+                      <span className="message-email">amit.kumar@email.com</span>
+                    </div>
+                    <div className="message-meta">
+                      <span className="message-time">1 day ago</span>
+                      <span className="badge bg-secondary">Read</span>
+                    </div>
+                  </div>
+                  <div className="message-content">
+                    <p><strong>Course:</strong> DevOps Engineering</p>
+                    <p><strong>Phone:</strong> +91 7654321098</p>
+                    <p><strong>Experience:</strong> 3 years as System Administrator</p>
+                    <p><strong>Message:</strong> I want to transition from system administration to DevOps. What are the prerequisites and duration of the course?</p>
+                  </div>
+                  <div className="message-actions">
+                    <button className="btn btn-outline-primary btn-sm" onClick={() => alert('Reply to Amit Kumar')}>
+                      Reply
+                    </button>
+                    <button className="btn btn-primary btn-sm" onClick={() => alert('Contacting Amit Kumar at +91 7654321098')}>
+                      Contact
+                    </button>
                   </div>
                 </div>
               </div>
