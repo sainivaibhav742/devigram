@@ -1,36 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = React.useState('All Courses');
 
-  useEffect(() => {
-    // Enhanced navbar with hide/show on scroll
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const navbar = document.querySelector('.navbar');
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        navbar.style.transform = 'translateY(-100%)';
-      } else {
-        navbar.style.transform = 'translateY(0)';
-      }
-      
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Removed conflicting scroll handler - navbar handles its own scroll effects
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
