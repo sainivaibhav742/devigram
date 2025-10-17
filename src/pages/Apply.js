@@ -1,43 +1,55 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 const Apply = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    education: '',
-    experience: '',
-    program: '',
-    goals: '',
-    motivation: '',
-    availability: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    education: "",
+    experience: "",
+    program: "",
+    goals: "",
+    motivation: "",
+    availability: "",
     agreeTerms: false,
-    agreeMarketing: false
+    agreeMarketing: false,
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    alert('Application submitted successfully! We will contact you soon.');
+    try {
+      const response = await fetch("http://localhost:5001/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      alert(data.message || "Application submitted!");
+    } catch (error) {
+      alert("Failed to submit. Try again later.");
+      console.error(error);
+    }
   };
 
   return (
     <>
       <Navbar />
-      
+
       {/* Application Form */}
       <section className="application-form">
         <div className="container">
@@ -45,9 +57,11 @@ const Apply = () => {
             <div className="col-lg-8">
               <div className="form-header text-center">
                 <h1 className="form-title">Apply for Our Program</h1>
-                <p className="form-subtitle">Take the first step towards your dream career in tech</p>
+                <p className="form-subtitle">
+                  Take the first step towards your dream career in tech
+                </p>
               </div>
-              
+
               <div className="application-card">
                 <form onSubmit={handleSubmit}>
                   {/* Personal Information */}
@@ -85,7 +99,7 @@ const Apply = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-floating">
@@ -157,8 +171,12 @@ const Apply = () => {
                       >
                         <option value="">Select your experience level</option>
                         <option value="beginner">Beginner (0-1 years)</option>
-                        <option value="intermediate">Intermediate (1-3 years)</option>
-                        <option value="experienced">Experienced (3-5 years)</option>
+                        <option value="intermediate">
+                          Intermediate (1-3 years)
+                        </option>
+                        <option value="experienced">
+                          Experienced (3-5 years)
+                        </option>
                         <option value="expert">Expert (5+ years)</option>
                       </select>
                       <label htmlFor="experience">Programming Experience</label>
@@ -179,9 +197,15 @@ const Apply = () => {
                       >
                         <option value="">Select a program</option>
                         <option value="dsa-bootcamp">DSA Bootcamp</option>
-                        <option value="system-design">System Design Mastery</option>
-                        <option value="full-stack">Full Stack Development</option>
-                        <option value="interview-prep">Interview Preparation</option>
+                        <option value="system-design">
+                          System Design Mastery
+                        </option>
+                        <option value="full-stack">
+                          Full Stack Development
+                        </option>
+                        <option value="interview-prep">
+                          Interview Preparation
+                        </option>
                         <option value="custom">Custom Program</option>
                       </select>
                       <label htmlFor="program">Preferred Program</label>
@@ -199,12 +223,12 @@ const Apply = () => {
                         value={formData.goals}
                         onChange={handleChange}
                         placeholder="What are your career goals?"
-                        style={{ height: '120px' }}
+                        style={{ height: "120px" }}
                         required
                       ></textarea>
                       <label htmlFor="goals">Career Goals</label>
                     </div>
-                    
+
                     <div className="form-floating">
                       <textarea
                         className="form-control"
@@ -213,7 +237,7 @@ const Apply = () => {
                         value={formData.motivation}
                         onChange={handleChange}
                         placeholder="Why do you want to join this program?"
-                        style={{ height: '120px' }}
+                        style={{ height: "120px" }}
                         required
                       ></textarea>
                       <label htmlFor="motivation">Motivation</label>
@@ -233,8 +257,12 @@ const Apply = () => {
                         required
                       >
                         <option value="">Select your availability</option>
-                        <option value="full-time">Full-time (40+ hours/week)</option>
-                        <option value="part-time">Part-time (20-30 hours/week)</option>
+                        <option value="full-time">
+                          Full-time (40+ hours/week)
+                        </option>
+                        <option value="part-time">
+                          Part-time (20-30 hours/week)
+                        </option>
                         <option value="weekends">Weekends only</option>
                         <option value="flexible">Flexible schedule</option>
                       </select>
@@ -255,10 +283,12 @@ const Apply = () => {
                         required
                       />
                       <label className="form-check-label" htmlFor="agreeTerms">
-                        I agree to the <Link to="/terms">Terms and Conditions</Link> and <Link to="/privacy">Privacy Policy</Link>
+                        I agree to the{" "}
+                        <Link to="/terms">Terms and Conditions</Link> and{" "}
+                        <Link to="/privacy">Privacy Policy</Link>
                       </label>
                     </div>
-                    
+
                     <div className="form-check mb-4">
                       <input
                         className="form-check-input"
@@ -268,19 +298,29 @@ const Apply = () => {
                         checked={formData.agreeMarketing}
                         onChange={handleChange}
                       />
-                      <label className="form-check-label" htmlFor="agreeMarketing">
-                        I agree to receive marketing communications and updates about the program
+                      <label
+                        className="form-check-label"
+                        htmlFor="agreeMarketing"
+                      >
+                        I agree to receive marketing communications and updates
+                        about the program
                       </label>
                     </div>
                   </div>
 
                   {/* Submit Button */}
                   <div className="text-center">
-                    <button type="submit" className="btn btn-primary btn-lg px-5">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-lg px-5"
+                    >
                       Submit Application
                     </button>
                     <p className="mt-3 text-muted">
-                      <small>We'll review your application and get back to you within 2-3 business days.</small>
+                      <small>
+                        We'll review your application and get back to you within
+                        2-3 business days.
+                      </small>
                     </p>
                   </div>
                 </form>
