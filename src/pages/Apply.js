@@ -18,6 +18,8 @@ const Apply = () => {
     agreeTerms: false,
     agreeMarketing: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,6 +31,9 @@ const Apply = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
     try {
       const response = await fetch("http://localhost:5001/apply", {
         method: "POST",
@@ -38,11 +43,34 @@ const Apply = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-      alert(data.message || "Application submitted!");
+      if (response.ok) {
+        const data = await response.json();
+        setSubmitStatus('success');
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          education: "",
+          experience: "",
+          program: "",
+          goals: "",
+          motivation: "",
+          availability: "",
+          agreeTerms: false,
+          agreeMarketing: false,
+        });
+      } else {
+        const errorData = await response.json();
+        console.error('Validation errors:', errorData);
+        console.log('Form data being sent:', formData);
+        setSubmitStatus('error');
+      }
     } catch (error) {
-      alert("Failed to submit. Try again later.");
+      setSubmitStatus('error');
       console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -126,7 +154,6 @@ const Apply = () => {
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="Phone Number"
-                            required
                           />
                           <label htmlFor="phone">Phone Number</label>
                         </div>
@@ -144,9 +171,8 @@ const Apply = () => {
                         name="education"
                         value={formData.education}
                         onChange={handleChange}
-                        required
                       >
-                        <option value="">Select your highest education</option>
+                        <option value="">Select your highest education (optional)</option>
                         <option value="high-school">High School</option>
                         <option value="bachelors">Bachelor's Degree</option>
                         <option value="masters">Master's Degree</option>
@@ -167,9 +193,8 @@ const Apply = () => {
                         name="experience"
                         value={formData.experience}
                         onChange={handleChange}
-                        required
                       >
-                        <option value="">Select your experience level</option>
+                        <option value="">Select your experience level (optional)</option>
                         <option value="beginner">Beginner (0-1 years)</option>
                         <option value="intermediate">
                           Intermediate (1-3 years)
@@ -222,9 +247,8 @@ const Apply = () => {
                         name="goals"
                         value={formData.goals}
                         onChange={handleChange}
-                        placeholder="What are your career goals?"
+                        placeholder="What are your career goals? (optional)"
                         style={{ height: "120px" }}
-                        required
                       ></textarea>
                       <label htmlFor="goals">Career Goals</label>
                     </div>
@@ -236,9 +260,8 @@ const Apply = () => {
                         name="motivation"
                         value={formData.motivation}
                         onChange={handleChange}
-                        placeholder="Why do you want to join this program?"
+                        placeholder="Why do you want to join this program? (optional)"
                         style={{ height: "120px" }}
-                        required
                       ></textarea>
                       <label htmlFor="motivation">Motivation</label>
                     </div>
@@ -254,9 +277,8 @@ const Apply = () => {
                         name="availability"
                         value={formData.availability}
                         onChange={handleChange}
-                        required
                       >
-                        <option value="">Select your availability</option>
+                        <option value="">Select your availability (optional)</option>
                         <option value="full-time">
                           Full-time (40+ hours/week)
                         </option>
@@ -310,11 +332,34 @@ const Apply = () => {
 
                   {/* Submit Button */}
                   <div className="text-center">
+                    {submitStatus === 'success' && (
+                      <div className="alert alert-success mb-3">
+                        <i className="bi bi-check-circle"></i>
+                        Application submitted successfully! We'll review it and get back to you within 2-3 business days.
+                      </div>
+                    )}
+                    {submitStatus === 'error' && (
+                      <div className="alert alert-danger mb-3">
+                        <i className="bi bi-exclamation-triangle"></i>
+                        Failed to submit application. Please try again later.
+                      </div>
+                    )}
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg px-5"
+                      disabled={isSubmitting}
                     >
-                      Submit Application
+                      {isSubmitting ? (
+                        <>
+                          <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <i className="bi bi-send me-2"></i>
+                          Submit Application
+                        </>
+                      )}
                     </button>
                     <p className="mt-3 text-muted">
                       <small>

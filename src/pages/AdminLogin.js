@@ -1,18 +1,42 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/admin-login.css';
+import '../styles/button-enhancements.css';
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simple demo authentication
-    if (credentials.username === 'admin' && credentials.password === 'admin123') {
-      navigate('/admin');
-    } else {
-      alert('Invalid credentials. Use admin/admin123');
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:5001/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('adminData', JSON.stringify(data.admin));
+        navigate('/admin');
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Network error. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -50,14 +74,29 @@ const AdminLogin = () => {
             />
           </div>
           
-          <button type="submit" className="login-btn">
-            <i className="bi bi-box-arrow-in-right"></i>
-            Login to Dashboard
+          {error && (
+            <div className="error-message" style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>
+              {error}
+            </div>
+          )}
+          
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                Logging in...
+              </>
+            ) : (
+              <>
+                <i className="bi bi-box-arrow-in-right"></i>
+                Login to Dashboard
+              </>
+            )}
           </button>
         </form>
         
         <div className="login-footer">
-          <p>Demo credentials: admin / admin123</p>
+          <p>Use your admin credentials to login</p>
         </div>
       </div>
     </div>

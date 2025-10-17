@@ -5,9 +5,10 @@ exports.submitApplication = async (req, res) => {
   try {
     const application = new Application(req.body);
     await application.save();
+    console.log('Application saved:', application._id);
     res.status(201).json({ message: "Application submitted successfully!" });
   } catch (error) {
-    console.error("Error saving application:", error);
+    console.error("Error submitting application:", error);
     res.status(500).json({ message: "Server error. Please try again." });
   }
 };
