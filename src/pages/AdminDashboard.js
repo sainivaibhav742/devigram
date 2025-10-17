@@ -1,98 +1,136 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/admin-dashboard-pro.css';
-import '../styles/admin-messages.css';
-import '../styles/admin-modern-stats.css';
+import React, { useEffect, useState } from "react";
+import "../styles/admin-dashboard-pro.css";
+import "../styles/admin-messages.css";
+import "../styles/admin-modern-stats.css";
 
 const AdminDashboard = () => {
-  const [activeSection, setActiveSection] = useState('overview');
+  const [activeSection, setActiveSection] = useState("overview");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [timeFilter, setTimeFilter] = useState('Last 7 days');
-  const [messageFilter, setMessageFilter] = useState('All Messages');
+  const [timeFilter, setTimeFilter] = useState("Last 7 days");
+  const [messageFilter, setMessageFilter] = useState("All Messages");
   const [refreshing, setRefreshing] = useState(false);
+  const [applications, setApplications] = useState([]);
+  const [loadingApps, setLoadingApps] = useState(false);
+  const [appsError, setAppsError] = useState("");
 
-  const handleRefresh = () => {
-    setRefreshing(true);
-    setTimeout(() => setRefreshing(false), 1000);
+  const fetchApplications = async () => {
+    try {
+      setAppsError("");
+      setLoadingApps(true);
+      const res = await fetch("http://localhost:5001/apply"); // dev proxy to server
+      if (!res.ok) throw new Error(`Failed to load (${res.status})`);
+      const data = await res.json();
+      setApplications(Array.isArray(data) ? data : []);
+    } catch (e) {
+      setAppsError(e.message || "Failed to load applications");
+    } finally {
+      setLoadingApps(false);
+    }
   };
 
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await fetchApplications();
+    setRefreshing(false);
+  };
+
+  // Load applications when Messages section is opened
+  useEffect(() => {
+    if (activeSection === "messages") {
+      fetchApplications();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection]);
+
   const handleExportReport = () => {
-    alert('Exporting report...');
+    alert("Exporting report...");
   };
 
   const handleAddStudent = () => {
-    alert('Add Student functionality');
+    alert("Add Student functionality");
   };
 
   const handleScheduleSession = () => {
-    alert('Schedule Session functionality');
+    alert("Schedule Session functionality");
   };
 
   const handleGenerateReport = () => {
-    alert('Generate Report functionality');
+    alert("Generate Report functionality");
   };
 
   const handleSendNotification = () => {
-    alert('Send Notification functionality');
+    alert("Send Notification functionality");
   };
 
   return (
     <>
       <div className="admin-layout">
         {/* Sidebar */}
-        <div className={`admin-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        <div className={`admin-sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
           <div className="sidebar-header">
             <div className="admin-logo">
               <i className="bi bi-shield-check"></i>
               {!sidebarCollapsed && <span>Admin Panel</span>}
             </div>
-            <button 
+            <button
               className="sidebar-toggle"
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             >
               <i className="bi bi-list"></i>
             </button>
           </div>
-          
+
           <nav className="sidebar-nav">
-            <button 
-              className={`nav-item ${activeSection === 'overview' ? 'active' : ''}`}
-              onClick={() => setActiveSection('overview')}
+            <button
+              className={`nav-item ${
+                activeSection === "overview" ? "active" : ""
+              }`}
+              onClick={() => setActiveSection("overview")}
             >
               <i className="bi bi-grid"></i>
               {!sidebarCollapsed && <span>Overview</span>}
             </button>
-            <button 
-              className={`nav-item ${activeSection === 'students' ? 'active' : ''}`}
-              onClick={() => setActiveSection('students')}
+            <button
+              className={`nav-item ${
+                activeSection === "students" ? "active" : ""
+              }`}
+              onClick={() => setActiveSection("students")}
             >
               <i className="bi bi-people"></i>
               {!sidebarCollapsed && <span>Students</span>}
             </button>
-            <button 
-              className={`nav-item ${activeSection === 'counselors' ? 'active' : ''}`}
-              onClick={() => setActiveSection('counselors')}
+            <button
+              className={`nav-item ${
+                activeSection === "counselors" ? "active" : ""
+              }`}
+              onClick={() => setActiveSection("counselors")}
             >
               <i className="bi bi-person-video3"></i>
               {!sidebarCollapsed && <span>Counselors</span>}
             </button>
-            <button 
-              className={`nav-item ${activeSection === 'messages' ? 'active' : ''}`}
-              onClick={() => setActiveSection('messages')}
+            <button
+              className={`nav-item ${
+                activeSection === "messages" ? "active" : ""
+              }`}
+              onClick={() => setActiveSection("messages")}
             >
               <i className="bi bi-envelope"></i>
               {!sidebarCollapsed && <span>Messages</span>}
             </button>
-            <button 
-              className={`nav-item ${activeSection === 'analytics' ? 'active' : ''}`}
-              onClick={() => setActiveSection('analytics')}
+            <button
+              className={`nav-item ${
+                activeSection === "analytics" ? "active" : ""
+              }`}
+              onClick={() => setActiveSection("analytics")}
             >
               <i className="bi bi-graph-up"></i>
               {!sidebarCollapsed && <span>Analytics</span>}
             </button>
-            <button 
-              className={`nav-item ${activeSection === 'settings' ? 'active' : ''}`}
-              onClick={() => setActiveSection('settings')}
+            <button
+              className={`nav-item ${
+                activeSection === "settings" ? "active" : ""
+              }`}
+              onClick={() => setActiveSection("settings")}
             >
               <i className="bi bi-gear"></i>
               {!sidebarCollapsed && <span>Settings</span>}
@@ -102,7 +140,7 @@ const AdminDashboard = () => {
 
         {/* Main Content */}
         <div className="admin-main">
-          {activeSection === 'overview' && (
+          {activeSection === "overview" && (
             <div className="admin-content">
               <div className="content-header">
                 <div>
@@ -110,16 +148,19 @@ const AdminDashboard = () => {
                   <p>Monitor student progress and platform performance</p>
                 </div>
                 <div className="header-actions">
-                  <select 
-                    className="form-select" 
-                    value={timeFilter} 
+                  <select
+                    className="form-select"
+                    value={timeFilter}
                     onChange={(e) => setTimeFilter(e.target.value)}
                   >
                     <option>Last 7 days</option>
                     <option>Last 30 days</option>
                     <option>This quarter</option>
                   </select>
-                  <button className="btn btn-primary" onClick={handleExportReport}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={handleExportReport}
+                  >
                     <i className="bi bi-download"></i>
                     Export Report
                   </button>
@@ -143,7 +184,10 @@ const AdminDashboard = () => {
                     <span className="stat-period">this month</span>
                   </div>
                   <div className="stat-progress">
-                    <div className="progress-bar" style={{width: '75%'}}></div>
+                    <div
+                      className="progress-bar"
+                      style={{ width: "75%" }}
+                    ></div>
                   </div>
                 </div>
 
@@ -163,7 +207,10 @@ const AdminDashboard = () => {
                     <span className="stat-period">this week</span>
                   </div>
                   <div className="stat-progress">
-                    <div className="progress-bar" style={{width: '85%'}}></div>
+                    <div
+                      className="progress-bar"
+                      style={{ width: "85%" }}
+                    ></div>
                   </div>
                 </div>
 
@@ -183,7 +230,10 @@ const AdminDashboard = () => {
                     <span className="stat-period">vs yesterday</span>
                   </div>
                   <div className="stat-progress">
-                    <div className="progress-bar" style={{width: '65%'}}></div>
+                    <div
+                      className="progress-bar"
+                      style={{ width: "65%" }}
+                    ></div>
                   </div>
                 </div>
 
@@ -203,7 +253,10 @@ const AdminDashboard = () => {
                     <span className="stat-period">this quarter</span>
                   </div>
                   <div className="stat-progress">
-                    <div className="progress-bar" style={{width: '94%'}}></div>
+                    <div
+                      className="progress-bar"
+                      style={{ width: "94%" }}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -213,16 +266,23 @@ const AdminDashboard = () => {
                   <div className="content-card">
                     <div className="card-header">
                       <h3>Recent Activity</h3>
-                      <button className="btn btn-outline-primary btn-sm">View All</button>
+                      <button className="btn btn-outline-primary btn-sm">
+                        View All
+                      </button>
                     </div>
                     <div className="activity-list">
                       <div className="activity-item">
                         <div className="activity-avatar">
-                          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=48&h=48&fit=crop&crop=face" alt="Student" />
+                          <img
+                            src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=48&h=48&fit=crop&crop=face"
+                            alt="Student"
+                          />
                         </div>
                         <div className="activity-content">
                           <h5>Priya Sharma completed college application</h5>
-                          <p>Applied to Stanford University - Computer Science</p>
+                          <p>
+                            Applied to Stanford University - Computer Science
+                          </p>
                           <span className="activity-time">2 hours ago</span>
                         </div>
                         <div className="activity-status success">
@@ -232,7 +292,10 @@ const AdminDashboard = () => {
 
                       <div className="activity-item">
                         <div className="activity-avatar">
-                          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face" alt="Student" />
+                          <img
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face"
+                            alt="Student"
+                          />
                         </div>
                         <div className="activity-content">
                           <h5>Alex Johnson achieved 7-day streak</h5>
@@ -246,7 +309,10 @@ const AdminDashboard = () => {
 
                       <div className="activity-item">
                         <div className="activity-avatar">
-                          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=48&h=48&fit=crop&crop=face" alt="Student" />
+                          <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=48&h=48&fit=crop&crop=face"
+                            alt="Student"
+                          />
                         </div>
                         <div className="activity-content">
                           <h5>Rahul Patel scheduled interview</h5>
@@ -271,15 +337,24 @@ const AdminDashboard = () => {
                         <i className="bi bi-person-plus"></i>
                         <span>Add Student</span>
                       </button>
-                      <button className="action-btn" onClick={handleScheduleSession}>
+                      <button
+                        className="action-btn"
+                        onClick={handleScheduleSession}
+                      >
                         <i className="bi bi-calendar-plus"></i>
                         <span>Schedule Session</span>
                       </button>
-                      <button className="action-btn" onClick={handleGenerateReport}>
+                      <button
+                        className="action-btn"
+                        onClick={handleGenerateReport}
+                      >
                         <i className="bi bi-file-earmark-text"></i>
                         <span>Generate Report</span>
                       </button>
-                      <button className="action-btn" onClick={handleSendNotification}>
+                      <button
+                        className="action-btn"
+                        onClick={handleSendNotification}
+                      >
                         <i className="bi bi-bell"></i>
                         <span>Send Notification</span>
                       </button>
@@ -293,7 +368,7 @@ const AdminDashboard = () => {
                   <div className="content-card">
                     <div className="card-header">
                       <h3>Performance Overview</h3>
-                      <select className="form-select" style={{width: 'auto'}}>
+                      <select className="form-select" style={{ width: "auto" }}>
                         <option>This Month</option>
                         <option>Last Month</option>
                         <option>This Quarter</option>
@@ -302,38 +377,58 @@ const AdminDashboard = () => {
                     <div className="performance-metrics">
                       <div className="metric-row">
                         <div className="metric-info">
-                          <span className="metric-label">Student Satisfaction</span>
+                          <span className="metric-label">
+                            Student Satisfaction
+                          </span>
                           <span className="metric-value">94%</span>
                         </div>
                         <div className="metric-bar">
-                          <div className="metric-fill" style={{width: '94%'}}></div>
+                          <div
+                            className="metric-fill"
+                            style={{ width: "94%" }}
+                          ></div>
                         </div>
                       </div>
                       <div className="metric-row">
                         <div className="metric-info">
-                          <span className="metric-label">Course Completion Rate</span>
+                          <span className="metric-label">
+                            Course Completion Rate
+                          </span>
                           <span className="metric-value">87%</span>
                         </div>
                         <div className="metric-bar">
-                          <div className="metric-fill" style={{width: '87%'}}></div>
+                          <div
+                            className="metric-fill"
+                            style={{ width: "87%" }}
+                          ></div>
                         </div>
                       </div>
                       <div className="metric-row">
                         <div className="metric-info">
-                          <span className="metric-label">Interview Success Rate</span>
+                          <span className="metric-label">
+                            Interview Success Rate
+                          </span>
                           <span className="metric-value">76%</span>
                         </div>
                         <div className="metric-bar">
-                          <div className="metric-fill" style={{width: '76%'}}></div>
+                          <div
+                            className="metric-fill"
+                            style={{ width: "76%" }}
+                          ></div>
                         </div>
                       </div>
                       <div className="metric-row">
                         <div className="metric-info">
-                          <span className="metric-label">Counselor Utilization</span>
+                          <span className="metric-label">
+                            Counselor Utilization
+                          </span>
                           <span className="metric-value">82%</span>
                         </div>
                         <div className="metric-bar">
-                          <div className="metric-fill" style={{width: '82%'}}></div>
+                          <div
+                            className="metric-fill"
+                            style={{ width: "82%" }}
+                          ></div>
                         </div>
                       </div>
                     </div>
@@ -350,7 +445,10 @@ const AdminDashboard = () => {
                       <div className="performer-item">
                         <div className="performer-rank">1</div>
                         <div className="performer-avatar">
-                          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Dr. Sarah" />
+                          <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                            alt="Dr. Sarah"
+                          />
                         </div>
                         <div className="performer-info">
                           <h5>Dr. Sarah Wilson</h5>
@@ -365,7 +463,10 @@ const AdminDashboard = () => {
                       <div className="performer-item">
                         <div className="performer-rank">2</div>
                         <div className="performer-avatar">
-                          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Priya" />
+                          <img
+                            src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face"
+                            alt="Priya"
+                          />
                         </div>
                         <div className="performer-info">
                           <h5>Priya Sharma</h5>
@@ -380,7 +481,10 @@ const AdminDashboard = () => {
                       <div className="performer-item">
                         <div className="performer-rank">3</div>
                         <div className="performer-avatar">
-                          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Alex" />
+                          <img
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                            alt="Alex"
+                          />
                         </div>
                         <div className="performer-info">
                           <h5>Alex Johnson</h5>
@@ -415,7 +519,10 @@ const AdminDashboard = () => {
                           <h4>Server Performance</h4>
                           <div className="metric-value">99.9% Uptime</div>
                           <div className="metric-bar">
-                            <div className="metric-fill success" style={{width: '99%'}}></div>
+                            <div
+                              className="metric-fill success"
+                              style={{ width: "99%" }}
+                            ></div>
                           </div>
                         </div>
                       </div>
@@ -428,7 +535,10 @@ const AdminDashboard = () => {
                           <h4>Database Health</h4>
                           <div className="metric-value">Optimal</div>
                           <div className="metric-bar">
-                            <div className="metric-fill success" style={{width: '95%'}}></div>
+                            <div
+                              className="metric-fill success"
+                              style={{ width: "95%" }}
+                            ></div>
                           </div>
                         </div>
                       </div>
@@ -441,7 +551,10 @@ const AdminDashboard = () => {
                           <h4>Security Status</h4>
                           <div className="metric-value">Secure</div>
                           <div className="metric-bar">
-                            <div className="metric-fill success" style={{width: '100%'}}></div>
+                            <div
+                              className="metric-fill success"
+                              style={{ width: "100%" }}
+                            ></div>
                           </div>
                         </div>
                       </div>
@@ -454,7 +567,10 @@ const AdminDashboard = () => {
                           <h4>Response Time</h4>
                           <div className="metric-value">120ms avg</div>
                           <div className="metric-bar">
-                            <div className="metric-fill warning" style={{width: '80%'}}></div>
+                            <div
+                              className="metric-fill warning"
+                              style={{ width: "80%" }}
+                            ></div>
                           </div>
                         </div>
                       </div>
@@ -465,7 +581,7 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {activeSection === 'students' && (
+          {activeSection === "students" && (
             <div className="admin-content">
               <div className="content-header">
                 <div>
@@ -495,13 +611,18 @@ const AdminDashboard = () => {
                 <div className="student-card">
                   <div className="student-header">
                     <div className="student-avatar">
-                      <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face" alt="Priya" />
+                      <img
+                        src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face"
+                        alt="Priya"
+                      />
                       <div className="status-indicator active"></div>
                     </div>
                     <div className="student-info">
                       <h4>Priya Sharma</h4>
                       <p>priya@example.com</p>
-                      <span className="type-badge counselling">Counselling</span>
+                      <span className="type-badge counselling">
+                        Counselling
+                      </span>
                     </div>
                   </div>
 
@@ -511,7 +632,10 @@ const AdminDashboard = () => {
                       <span>75%</span>
                     </div>
                     <div className="progress-bar">
-                      <div className="progress-fill" style={{width: '75%'}}></div>
+                      <div
+                        className="progress-fill"
+                        style={{ width: "75%" }}
+                      ></div>
                     </div>
                   </div>
 
@@ -531,7 +655,9 @@ const AdminDashboard = () => {
                   </div>
 
                   <div className="student-actions">
-                    <button className="btn btn-outline-primary btn-sm">View Profile</button>
+                    <button className="btn btn-outline-primary btn-sm">
+                      View Profile
+                    </button>
                     <button className="btn btn-primary btn-sm">Contact</button>
                   </div>
                 </div>
@@ -539,7 +665,10 @@ const AdminDashboard = () => {
                 <div className="student-card">
                   <div className="student-header">
                     <div className="student-avatar">
-                      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face" alt="Alex" />
+                      <img
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face"
+                        alt="Alex"
+                      />
                       <div className="status-indicator active"></div>
                     </div>
                     <div className="student-info">
@@ -555,7 +684,10 @@ const AdminDashboard = () => {
                       <span>85%</span>
                     </div>
                     <div className="progress-bar">
-                      <div className="progress-fill" style={{width: '85%'}}></div>
+                      <div
+                        className="progress-fill"
+                        style={{ width: "85%" }}
+                      ></div>
                     </div>
                   </div>
 
@@ -575,7 +707,9 @@ const AdminDashboard = () => {
                   </div>
 
                   <div className="student-actions">
-                    <button className="btn btn-outline-primary btn-sm">View Profile</button>
+                    <button className="btn btn-outline-primary btn-sm">
+                      View Profile
+                    </button>
                     <button className="btn btn-primary btn-sm">Contact</button>
                   </div>
                 </div>
@@ -583,7 +717,7 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {activeSection === 'counselors' && (
+          {activeSection === "counselors" && (
             <div className="admin-content">
               <div className="content-header">
                 <div>
@@ -606,7 +740,10 @@ const AdminDashboard = () => {
                 <div className="counselor-card">
                   <div className="counselor-header">
                     <div className="counselor-avatar">
-                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Dr. Sarah" />
+                      <img
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                        alt="Dr. Sarah"
+                      />
                       <div className="status-dot online"></div>
                     </div>
                     <div className="counselor-info">
@@ -635,7 +772,9 @@ const AdminDashboard = () => {
                   </div>
 
                   <div className="counselor-actions">
-                    <button className="btn btn-outline-primary">View Schedule</button>
+                    <button className="btn btn-outline-primary">
+                      View Schedule
+                    </button>
                     <button className="btn btn-primary">Assign Students</button>
                   </div>
                 </div>
@@ -643,7 +782,7 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {activeSection === 'messages' && (
+          {activeSection === "messages" && (
             <div className="admin-content">
               <div className="content-header">
                 <div>
@@ -651,112 +790,127 @@ const AdminDashboard = () => {
                   <p>View and manage messages from application forms</p>
                 </div>
                 <div className="header-actions">
-                  <select 
-                    className="form-select" 
-                    value={messageFilter} 
+                  <select
+                    className="form-select"
+                    value={messageFilter}
                     onChange={(e) => setMessageFilter(e.target.value)}
                   >
                     <option>All Messages</option>
                     <option>Unread</option>
                     <option>Today</option>
                   </select>
-                  <button 
-                    className={`btn btn-primary ${refreshing ? 'disabled' : ''}`} 
+                  <button
+                    className={`btn btn-primary ${
+                      refreshing ? "disabled" : ""
+                    }`}
                     onClick={handleRefresh}
                     disabled={refreshing}
                   >
-                    <i className={`bi bi-arrow-clockwise ${refreshing ? 'spin' : ''}`}></i>
-                    {refreshing ? 'Refreshing...' : 'Refresh'}
+                    <i
+                      className={`bi bi-arrow-clockwise ${
+                        refreshing ? "spin" : ""
+                      }`}
+                    ></i>
+                    {refreshing ? "Refreshing..." : "Refresh"}
                   </button>
                 </div>
               </div>
 
               <div className="messages-list">
-                <div className="message-card">
-                  <div className="message-header">
-                    <div className="message-info">
-                      <h5>Rahul Sharma</h5>
-                      <span className="message-email">rahul.sharma@email.com</span>
-                    </div>
-                    <div className="message-meta">
-                      <span className="message-time">2 hours ago</span>
-                      <span className="badge bg-success">New</span>
+                {loadingApps && (
+                  <div className="message-card">
+                    <div className="message-content">
+                      <p>Loading applications…</p>
                     </div>
                   </div>
-                  <div className="message-content">
-                    <p><strong>Course:</strong> Full Stack Web Development</p>
-                    <p><strong>Phone:</strong> +91 9876543210</p>
-                    <p><strong>Experience:</strong> 2 years in frontend development</p>
-                    <p><strong>Message:</strong> I'm interested in transitioning to full-stack development and would like to know more about the course structure and placement assistance.</p>
+                )}
+                {appsError && !loadingApps && (
+                  <div className="message-card">
+                    <div className="message-content">
+                      <p style={{ color: "red" }}>Error: {appsError}</p>
+                    </div>
                   </div>
-                  <div className="message-actions">
-                    <button className="btn btn-outline-primary btn-sm" onClick={() => alert('Reply to Rahul Sharma')}>
-                      Reply
-                    </button>
-                    <button className="btn btn-primary btn-sm" onClick={() => alert('Contacting Rahul Sharma at +91 9876543210')}>
-                      Contact
-                    </button>
+                )}
+                {!loadingApps && !appsError && applications.length === 0 && (
+                  <div className="message-card">
+                    <div className="message-content">
+                      <p>No applications yet.</p>
+                    </div>
                   </div>
-                </div>
+                )}
 
-                <div className="message-card">
-                  <div className="message-header">
-                    <div className="message-info">
-                      <h5>Priya Patel</h5>
-                      <span className="message-email">priya.patel@email.com</span>
+                {applications.map((app) => {
+                  const submitted = app.submittedAt
+                    ? new Date(app.submittedAt)
+                    : null;
+                  const submittedText = submitted
+                    ? submitted.toLocaleString()
+                    : "";
+                  const fullName =
+                    `${app.firstName || ""} ${app.lastName || ""}`.trim() ||
+                    "Applicant";
+                  return (
+                    <div key={app._id} className="message-card">
+                      <div className="message-header">
+                        <div className="message-info">
+                          <h5>{fullName}</h5>
+                          <span className="message-email">{app.email}</span>
+                        </div>
+                        <div className="message-meta">
+                          <span className="message-time">{submittedText}</span>
+                          <span className="badge bg-secondary">New</span>
+                        </div>
+                      </div>
+                      <div className="message-content">
+                        <p>
+                          <strong>Program:</strong> {app.program}
+                        </p>
+                        <p>
+                          <strong>Phone:</strong> {app.phone}
+                        </p>
+                        <p>
+                          <strong>Experience:</strong> {app.experience}
+                        </p>
+                        {app.education && (
+                          <p>
+                            <strong>Education:</strong> {app.education}
+                          </p>
+                        )}
+                        {app.goals && (
+                          <p>
+                            <strong>Goals:</strong> {app.goals}
+                          </p>
+                        )}
+                        {app.motivation && (
+                          <p>
+                            <strong>Motivation:</strong> {app.motivation}
+                          </p>
+                        )}
+                      </div>
+                      <div className="message-actions">
+                        <button
+                          className="btn btn-outline-primary btn-sm"
+                          onClick={() => alert(`Reply to ${fullName}`)}
+                        >
+                          Reply
+                        </button>
+                        <button
+                          className="btn btn-primary btn-sm"
+                          onClick={() =>
+                            alert(`Contacting ${fullName} at ${app.phone}`)
+                          }
+                        >
+                          Contact
+                        </button>
+                      </div>
                     </div>
-                    <div className="message-meta">
-                      <span className="message-time">5 hours ago</span>
-                      <span className="badge bg-warning">Pending</span>
-                    </div>
-                  </div>
-                  <div className="message-content">
-                    <p><strong>Course:</strong> Data Science & Analytics</p>
-                    <p><strong>Phone:</strong> +91 8765432109</p>
-                    <p><strong>Experience:</strong> Fresh graduate in Computer Science</p>
-                    <p><strong>Message:</strong> I'm a recent CS graduate looking to specialize in data science. Can you provide information about the curriculum and job prospects?</p>
-                  </div>
-                  <div className="message-actions">
-                    <button className="btn btn-outline-primary btn-sm" onClick={() => alert('Reply to Priya Patel')}>
-                      Reply
-                    </button>
-                    <button className="btn btn-primary btn-sm" onClick={() => alert('Contacting Priya Patel at +91 8765432109')}>
-                      Contact
-                    </button>
-                  </div>
-                </div>
-
-                <div className="message-card">
-                  <div className="message-header">
-                    <div className="message-info">
-                      <h5>Amit Kumar</h5>
-                      <span className="message-email">amit.kumar@email.com</span>
-                    </div>
-                    <div className="message-meta">
-                      <span className="message-time">1 day ago</span>
-                      <span className="badge bg-secondary">Read</span>
-                    </div>
-                  </div>
-                  <div className="message-content">
-                    <p><strong>Course:</strong> DevOps Engineering</p>
-                    <p><strong>Phone:</strong> +91 7654321098</p>
-                    <p><strong>Experience:</strong> 3 years as System Administrator</p>
-                    <p><strong>Message:</strong> I want to transition from system administration to DevOps. What are the prerequisites and duration of the course?</p>
-                  </div>
-                  <div className="message-actions">
-                    <button className="btn btn-outline-primary btn-sm" onClick={() => alert('Reply to Amit Kumar')}>
-                      Reply
-                    </button>
-                    <button className="btn btn-primary btn-sm" onClick={() => alert('Contacting Amit Kumar at +91 7654321098')}>
-                      Contact
-                    </button>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
           )}
 
-          {activeSection === 'analytics' && (
+          {activeSection === "analytics" && (
             <div className="admin-content">
               <div className="content-header">
                 <div>
@@ -796,7 +950,7 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {activeSection === 'settings' && (
+          {activeSection === "settings" && (
             <div className="admin-content">
               <div className="content-header">
                 <div>
@@ -824,11 +978,19 @@ const AdminDashboard = () => {
                   <div className="settings-options">
                     <div className="setting-item">
                       <label>Platform Name</label>
-                      <input type="text" value="Devigram" className="form-control" />
+                      <input
+                        type="text"
+                        value="Devigram"
+                        className="form-control"
+                      />
                     </div>
                     <div className="setting-item">
                       <label>Support Email</label>
-                      <input type="email" value="support@devigram.com" className="form-control" />
+                      <input
+                        type="email"
+                        value="support@devigram.com"
+                        className="form-control"
+                      />
                     </div>
                   </div>
                 </div>
