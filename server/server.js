@@ -68,6 +68,7 @@ const corsOptions = {
   origin: [
     "http://localhost:3000",
     "http://localhost:3001",
+    "https://sainivaibhav742.github.io",
     "https://devigram.com",
     "https://www.devigram.com"
   ],
@@ -104,7 +105,13 @@ mongoose
 app.use("/apply", applyRoutes);
 app.use("/admin", authLimiter, adminRoutes); // Apply auth rate limiting to admin routes
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// For Vercel serverless functions, export the app
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// Export the Express app for Vercel
+module.exports = app;
