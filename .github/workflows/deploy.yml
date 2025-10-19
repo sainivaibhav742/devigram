@@ -2,9 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, deployment-setup ]
-  pull_request:
-    branches: [ main, deployment-setup ]
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -28,7 +26,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/deployment-setup'
+      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
