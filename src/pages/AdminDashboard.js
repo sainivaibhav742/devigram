@@ -80,7 +80,7 @@ const AdminDashboard = () => {
     if (activeSection === "messages") {
       fetchApplications();
     }
-  }, [activeSection]);
+  }, [activeSection, fetchApplications]);
 
   const handleExportReport = () => {
     const csvContent = "data:text/csv;charset=utf-8," + 
