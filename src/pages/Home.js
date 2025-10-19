@@ -1,108 +1,97 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
 const Home = () => {
-  const [activeFilter, setActiveFilter] = React.useState('All Courses');
-
-  // Removed conflicting scroll handler - navbar handles its own scroll effects
+  const [activeFilter, setActiveFilter] = useState('All Courses');
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
   };
 
-  const courses = {
-    'All Courses': [
-      {
-        id: 1,
-        title: 'Mastering DSA & System Design',
-        badge: 'Professional',
-        category: 'Software Development',
-        outcomes: [
-          'Complete understanding of basic to advance problem solving',
-          'Ability to approach a problem with multiple solution',
-          'Proficiency in System Design (LLD + HLD)',
-          'Ability to convert algorithms to working code',
-          'Case studies with implementation'
-        ]
-      },
-      {
-        id: 2,
-        title: 'Mastering DSA & System Design with Full Stack Specialization',
-        badge: 'Professional',
-        category: 'Web Development',
-        outcomes: [
-          'Complete understanding of basic to advance problem solving',
-          'Ability to approach a problem with multiple solution',
-          'Proficiency in System Design (LLD + HLD)',
-          'Ability to convert algorithms to working code',
-          'Web development using MERN Stack'
-        ]
-      },
-      {
-        id: 3,
-        title: 'Advanced Data Science and Generative AI Course',
-        badge: 'Professional',
-        category: 'Data Science',
-        outcomes: [
-          'Solid understanding of fundamentals of AI & ML',
-          'Statistical thinking and descriptive analysis',
-          'Building your own GPT/LLM model',
-          'Business case studies and real-life projects using Generative AI',
-          'Advanced concepts of Excel, Tableau & Power BI'
-        ]
-      },
-      {
-        id: 4,
-        title: 'Complete Placement Package for College Students',
-        badge: 'Student',
-        category: 'Software Development',
-        outcomes: [
-          'Complete understanding of basic to advance problem solving',
-          'Ability to approach a problem with multiple solution',
-          'Computer fundaments with projects',
-          'Ability to convert algorithms to working code',
-          'Web development using MERN Stack with projects'
-        ]
-      },
-      {
-        id: 5,
-        title: 'Full Stack Web Development - MERN',
-        badge: 'Professional',
-        category: 'Web Development',
-        outcomes: [
-          'Basics of web development using HTML, CSS and Javascript',
-          'Building web applications using React, Next.js and MongoDB',
-          'Backend development using next.js and node',
-          'Fundamentals of building API and microservices',
-          'Live project development'
-        ]
-      },
-      {
-        id: 6,
-        title: 'Tech Interview Preparation - Mock Interviews',
-        badge: 'Professional',
-        category: 'Interview Preparation',
-        outcomes: [
-          '1:1 Mentorship with Mentors from MAANG',
-          'Weekly sessions on interview preparation',
-          'Mock interview with feedback sessions and guidance',
-          'Session on resume review, Naukri and LinkedIn profiles',
-          'Referral in your dream company'
-        ]
-      }
-    ]
-  };
-
-  const getFilteredCourses = () => {
-    if (activeFilter === 'All Courses') {
-      return courses['All Courses'];
+  const courses = [
+    {
+      id: 1,
+      title: 'Mastering DSA & System Design',
+      badge: 'Professional',
+      category: 'Software Development',
+      outcomes: [
+        'Complete understanding of basic to advance problem solving',
+        'Ability to approach a problem with multiple solution',
+        'Proficiency in System Design (LLD + HLD)',
+        'Ability to convert algorithms to working code',
+        'Case studies with implementation'
+      ]
+    },
+    {
+      id: 2,
+      title: 'Mastering DSA & System Design with Full Stack Specialization',
+      badge: 'Professional',
+      category: 'Web Development',
+      outcomes: [
+        'Complete understanding of basic to advance problem solving',
+        'Ability to approach a problem with multiple solution',
+        'Proficiency in System Design (LLD + HLD)',
+        'Ability to convert algorithms to working code',
+        'Web development using MERN Stack'
+      ]
+    },
+    {
+      id: 3,
+      title: 'Advanced Data Science and Generative AI Course',
+      badge: 'Professional',
+      category: 'Data Science',
+      outcomes: [
+        'Solid understanding of fundamentals of AI & ML',
+        'Statistical thinking and descriptive analysis',
+        'Building your own GPT/LLM model',
+        'Business case studies and real-life projects using Generative AI',
+        'Advanced concepts of Excel, Tableau & Power BI'
+      ]
+    },
+    {
+      id: 4,
+      title: 'Complete Placement Package for College Students',
+      badge: 'Student',
+      category: 'Software Development',
+      outcomes: [
+        'Complete understanding of basic to advance problem solving',
+        'Ability to approach a problem with multiple solution',
+        'Computer fundaments with projects',
+        'Ability to convert algorithms to working code',
+        'Web development using MERN Stack with projects'
+      ]
+    },
+    {
+      id: 5,
+      title: 'Full Stack Web Development - MERN',
+      badge: 'Professional',
+      category: 'Web Development',
+      outcomes: [
+        'Basics of web development using HTML, CSS and Javascript',
+        'Building web applications using React, Next.js and MongoDB',
+        'Backend development using next.js and node',
+        'Fundamentals of building API and microservices',
+        'Live project development'
+      ]
+    },
+    {
+      id: 6,
+      title: 'Tech Interview Preparation - Mock Interviews',
+      badge: 'Professional',
+      category: 'Interview Preparation',
+      outcomes: [
+        '1:1 Mentorship with Mentors from MAANG',
+        'Weekly sessions on interview preparation',
+        'Mock interview with feedback sessions and guidance',
+        'Session on resume review, Naukri and LinkedIn profiles',
+        'Referral in your dream company'
+      ]
     }
-    return courses['All Courses'].filter(course => course.category === activeFilter);
-  };
+  ];
 
-  const filteredCourses = getFilteredCourses();
+  const filteredCourses = activeFilter === 'All Courses' ? courses : courses.filter(course => course.category === activeFilter);
 
   return (
     <>

@@ -44,7 +44,6 @@ const Apply = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
         setSubmitStatus('success');
         setFormData({
           firstName: "",
@@ -63,7 +62,6 @@ const Apply = () => {
       } else {
         const errorData = await response.json();
         console.error('Validation errors:', errorData);
-        console.log('Form data being sent:', formData);
         setSubmitStatus('error');
       }
     } catch (error) {

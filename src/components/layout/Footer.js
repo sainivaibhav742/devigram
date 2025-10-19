@@ -35,9 +35,9 @@ const Footer = () => {
           <div className="col-lg-2 col-md-6">
             <h5>Company</h5>
             <ul className="footer-links">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">Careers</a></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/careers">Careers</Link></li>
             </ul>
           </div>
           
@@ -60,10 +60,10 @@ const Footer = () => {
           </div>
           <div className="col-md-6 text-md-end">
             <div className="social-links">
-              <a href="#"><i className="bi bi-twitter"></i></a>
-              <a href="#"><i className="bi bi-linkedin"></i></a>
-              <a href="#"><i className="bi bi-github"></i></a>
-              <a href="#"><i className="bi bi-youtube"></i></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-twitter"></i></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-linkedin"></i></a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-github"></i></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-youtube"></i></a>
             </div>
           </div>
         </div>

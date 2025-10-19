@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminManagement from "./AdminManagement";
 import "../styles/admin-dashboard-pro.css";
@@ -36,7 +36,7 @@ const AdminDashboard = () => {
     setTimeout(() => setNotification(null), 3000);
   };
 
-  const fetchApplications = async () => {
+  const fetchApplications = useCallback(async () => {
     try {
       setAppsError("");
       setLoadingApps(true);
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
     } finally {
       setLoadingApps(false);
     }
-  };
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
@@ -80,7 +80,7 @@ const AdminDashboard = () => {
     if (activeSection === "messages") {
       fetchApplications();
     }
-  }, [activeSection]);
+  }, [activeSection, fetchApplications]);
 
   const handleExportReport = () => {
     const csvContent = "data:text/csv;charset=utf-8," + 
