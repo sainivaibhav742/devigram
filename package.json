@@ -2,6 +2,7 @@
   "name": "devigram-react",
   "version": "1.0.0",
   "description": "Modern React e-learning platform with enhanced animations and design",
+  "homepage": "https://sainivaibhav742.github.io/devigram",
   "private": true,
   "author": "Devigram Team",
   "keywords": ["react", "e-learning", "education", "courses", "mentorship"],
