@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import { API_ENDPOINTS } from "../config/api";
 
 const Apply = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const Apply = () => {
     setSubmitStatus(null);
     
     try {
-      const response = await fetch("http://localhost:5001/apply", {
+      const response = await fetch(API_ENDPOINTS.apply, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

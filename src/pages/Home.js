@@ -98,93 +98,168 @@ const Home = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-bg">
-          <div className="hero-shape shape-1"></div>
-          <div className="hero-shape shape-2"></div>
-          <div className="hero-shape shape-3"></div>
-        </div>
-        <div className="container">
-          <div className="row align-items-center min-vh-100">
+      <section className="hero" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '80px', paddingBottom: '60px'}}>
+        <div className="container" style={{position: 'relative', zIndex: 2}}>
+          <div className="row align-items-center g-5">
             <div className="col-lg-6">
               <div className="hero-content">
-                <h1 className="hero-title">Master Algorithms & Land Your Dream Job</h1>
-                <p className="hero-subtitle">Join 10,000+ developers who've cracked top tech interviews with our comprehensive algorithm training program.</p>
-                
-                <div className="hero-stats">
-                  <div className="stat-item">
-                    <span className="stat-number">95%</span>
-                    <span className="stat-label">Success Rate</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">500+</span>
-                    <span className="stat-label">Companies</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">₹15L+</span>
-                    <span className="stat-label">Avg Package</span>
-                  </div>
+                <div className="d-inline-flex align-items-center gap-2 mb-4" style={{background: '#00ff88', borderRadius: '50px', padding: '10px 24px'}}>
+                  <i className="bi bi-check-circle" style={{fontSize: '18px'}}></i>
+                  <span style={{color: '#000', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
                 </div>
                 
-                <div className="hero-actions">
-                  <Link to="/apply" className="btn btn-primary btn-lg">Start Learning</Link>
-                  <Link to="/courses" className="btn btn-outline-light btn-lg">View Courses</Link>
+                <h1 style={{fontSize: 'clamp(3rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '3rem', letterSpacing: '-0.02em'}}>
+                  DSA Mastery<br/>Bootcamp
+                </h1>
+                
+                <div className="d-flex flex-wrap gap-3 mb-4">
+                  <Link to="/apply" className="btn btn-lg" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)'}}>
+                    Start Learning Now
+                  </Link>
+                  <Link to="/courses" className="btn btn-outline-light btn-lg" style={{border: '2px solid rgba(255,255,255,0.5)', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', color: '#fff'}}>
+                    Explore Courses
+                  </Link>
                 </div>
               </div>
             </div>
             
             <div className="col-lg-6">
-              <div className="hero-visual">
-                <div className="code-editor">
-                  <div className="editor-header">
-                    <div className="editor-controls">
-                      <span className="control red"></span>
-                      <span className="control yellow"></span>
-                      <span className="control green"></span>
+              <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
+                <div style={{background: 'rgba(255,255,255,0.98)', borderRadius: '28px', padding: '40px', boxShadow: '0 30px 80px rgba(0,0,0,0.35)', backdropFilter: 'blur(10px)', maxWidth: '480px', width: '100%'}}>
+                  <div style={{background: 'linear-gradient(135deg, #f5f3ff 0%, #e8e4ff 100%)', borderRadius: '20px', padding: '30px', marginBottom: '24px', minHeight: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{textAlign: 'center'}}>
+                      <i className="bi bi-code-square" style={{fontSize: '3rem', color: '#667eea'}}></i>
+                      <p style={{marginTop: '10px', color: '#667eea', fontWeight: '600', fontSize: '1.1rem', marginBottom: 0}}>Premium Course Access</p>
                     </div>
-                    <span className="editor-title">solution.py</span>
                   </div>
-                  <div className="editor-content">
-                    <div className="code-line">
-                      <span className="line-num">1</span>
-                      <span className="code">def <span className="func">twoSum</span>(nums, target):</span>
+                  
+                  <div style={{background: 'linear-gradient(135deg, #00ff88 0%, #00d97e 100%)', borderRadius: '16px', padding: '20px', marginBottom: '24px', textAlign: 'center'}}>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+                      <i className="bi bi-trophy-fill" style={{fontSize: '1.5rem', color: '#000'}}></i>
+                      <span style={{fontSize: '1.1rem', fontWeight: '700', color: '#000'}}>95% Placement Success</span>
                     </div>
-                    <div className="code-line">
-                      <span className="line-num">2</span>
-                      <span className="code">    <span className="var">hashmap</span> = {`{}`}</span>
+                  </div>
+                  
+                  <div style={{borderTop: '2px dashed #ddd', paddingTop: '24px', marginTop: '24px'}}>
+                    <div style={{color: '#666', fontSize: '15px', marginBottom: '12px', fontWeight: '500'}}>Total program fee:</div>
+                    <div style={{display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '24px'}}>
+                      <span style={{fontSize: '1.75rem', fontWeight: '700', color: '#999', textDecoration: 'line-through'}}>₹50,000/-</span>
+                      <span style={{fontSize: '2rem', fontWeight: '900', color: '#000'}}>₹30,000/-</span>
+                      <span style={{background: '#00ff88', padding: '6px 14px', borderRadius: '8px', fontSize: '15px', fontWeight: '700', color: '#000'}}>Save 40%</span>
                     </div>
-                    <div className="code-line">
-                      <span className="line-num">3</span>
-                      <span className="code">    for i, num in enumerate(nums):</span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-num">4</span>
-                      <span className="code">        if target - num in hashmap:</span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-num">5</span>
-                      <span className="code">            return [hashmap[target - num], i]</span>
-                    </div>
-                    <div className="code-line">
-                      <span className="line-num">6</span>
-                      <span className="code">        hashmap[num] = i</span>
-                    </div>
+                    
+                    <Link to="/apply" className="btn w-100" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', padding: '20px', fontSize: '1.3rem', fontWeight: '700', borderRadius: '14px', border: 'none', boxShadow: '0 10px 30px rgba(102, 126, 234, 0.4)', transition: 'all 0.3s'}}>
+                      Apply Now
+                    </Link>
+                    
+                    <p style={{fontSize: '11px', color: '#999', marginTop: '16px', lineHeight: '1.5', marginBottom: 0, textAlign: 'center'}}>
+                      By continuing, you agree to Devigram's Privacy Policy and Terms & Conditions. The fee can be paid via custom payment link at enrollment.
+                    </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Brand Logos Slider */}
+          <div style={{borderTop: '1px solid rgba(255,255,255,0.15)', marginTop: '60px', paddingTop: '30px', paddingBottom: '20px'}}>
+            <div style={{textAlign: 'center', marginBottom: '20px'}}>
+              <p style={{fontSize: '0.8rem', marginBottom: '0', fontWeight: '600', color: 'rgba(255,255,255,0.7)', letterSpacing: '1.5px', textTransform: 'uppercase'}}>Our learners work at top companies</p>
+            </div>
+            
+            <div style={{position: 'relative', overflow: 'hidden', width: '100%'}}>
+              <style>{`
+                @keyframes scroll-brands {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .brand-slider {
+                  display: flex;
+                  animation: scroll-brands 35s linear infinite;
+                  gap: 60px;
+                  align-items: center;
+                }
+                .brand-slider:hover {
+                  animation-play-state: paused;
+                }
+                .brand-logo-wrapper {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 10px 18px;
+                  background: rgba(255, 255, 255, 0.08);
+                  border-radius: 10px;
+                  backdrop-filter: blur(8px);
+                  transition: all 0.3s ease;
+                  min-width: 120px;
+                }
+                .brand-logo-wrapper:hover {
+                  background: rgba(255, 255, 255, 0.18);
+                  transform: translateY(-2px);
+                }
+              `}</style>
+              <div className="brand-slider">
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Adobe_logo.svg" alt="Adobe" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Uber_logo_2018.svg" alt="Uber" style={{height: '20px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                </div>
                 
-                <div className="floating-elements">
-                  <div className="float-card card-1">
-                    <i className="bi bi-check-circle-fill"></i>
-                    <span>Problem Solved!</span>
-                  </div>
-                  <div className="float-card card-2">
-                    <i className="bi bi-lightning-fill"></i>
-                    <span>O(n) Solution</span>
-                  </div>
-                  <div className="float-card card-3">
-                    <i className="bi bi-trophy-fill"></i>
-                    <span>Interview Ready</span>
-                  </div>
+                {/* Duplicate for seamless loop */}
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Adobe_logo.svg" alt="Adobe" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Uber_logo_2018.svg" alt="Uber" style={{height: '20px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
                 </div>
               </div>
             </div>

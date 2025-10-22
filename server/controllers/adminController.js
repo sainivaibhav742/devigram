@@ -13,7 +13,6 @@ const generateToken = (id) => {
 exports.loginAdmin = async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log('Login attempt:', username, password);
 
     const admin = await Admin.findOne({
       $or: [{ username }, { email: username }]

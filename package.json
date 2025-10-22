@@ -5,7 +5,13 @@
   "homepage": "https://sainivaibhav742.github.io/devigram",
   "private": true,
   "author": "Devigram Team",
-  "keywords": ["react", "e-learning", "education", "courses", "mentorship"],
+  "keywords": [
+    "react",
+    "e-learning",
+    "education",
+    "courses",
+    "mentorship"
+  ],
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -17,6 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "analyze": "npm run build && npx serve -s build",
     "lint": "eslint src --ext .js,.jsx",
     "format": "prettier --write src/**/*.{js,jsx,css}"
@@ -38,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

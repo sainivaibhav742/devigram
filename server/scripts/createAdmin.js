@@ -7,22 +7,28 @@ const createDefaultAdmin = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Connected to MongoDB");
 
-    const existingAdmin = await Admin.findOne({ username: "admin" });
+    const adminUsername = process.env.ADMIN_USERNAME || "admin";
+    const adminEmail = process.env.ADMIN_EMAIL || "admin@devigram.com";
+    const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
+
+    const existingAdmin = await Admin.findOne({ 
+      $or: [{ username: adminUsername }, { email: adminEmail }]
+    });
     if (existingAdmin) {
-      console.log("Default admin already exists");
+      console.log("Admin already exists");
       process.exit(0);
     }
 
     const admin = new Admin({
-      username: "admin",
-      email: "admin@devigram.com",
-      password: "admin123"
+      username: adminUsername,
+      email: adminEmail,
+      password: adminPassword
     });
 
     await admin.save();
-    console.log("Default admin created successfully!");
-    console.log("Username: admin");
-    console.log("Password: admin123");
+    console.log("Admin created successfully!");
+    console.log(`Username: ${adminUsername}`);
+    console.log(`Email: ${adminEmail}`);
     
     process.exit(0);
   } catch (error) {

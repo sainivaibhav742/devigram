@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../config/api";
 import AdminManagement from "./AdminManagement";
 import "../styles/admin-dashboard-pro.css";
 import "../styles/admin-messages.css";
@@ -9,7 +10,6 @@ import "../styles/button-enhancements.css";
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("overview");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [timeFilter, setTimeFilter] = useState("Last 7 days");
   const [messageFilter, setMessageFilter] = useState("All Messages");
   const [refreshing, setRefreshing] = useState(false);
@@ -31,6 +31,7 @@ const AdminDashboard = () => {
     setAdminData(JSON.parse(storedAdminData));
   }, [navigate]);
 
+
   const showNotification = (message, type = 'success') => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 3000);
@@ -41,7 +42,7 @@ const AdminDashboard = () => {
       setAppsError("");
       setLoadingApps(true);
       const token = localStorage.getItem('adminToken');
-      const res = await fetch("http://localhost:5001/apply", {
+      const res = await fetch(API_ENDPOINTS.adminApplications, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -117,18 +118,12 @@ const AdminDashboard = () => {
       )}
       
       <div className="admin-layout">
-        <div className={`admin-sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
+        <div className="admin-sidebar">
           <div className="sidebar-header">
             <div className="admin-logo">
               <i className="bi bi-shield-check"></i>
-              {!sidebarCollapsed && <span>Admin Panel</span>}
+              <span>Admin Panel</span>
             </div>
-            <button
-              className="sidebar-toggle"
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            >
-              <i className="bi bi-list"></i>
-            </button>
           </div>
 
           <nav className="sidebar-nav">
@@ -139,7 +134,7 @@ const AdminDashboard = () => {
               onClick={() => setActiveSection("overview")}
             >
               <i className="bi bi-grid"></i>
-              {!sidebarCollapsed && <span>Overview</span>}
+              <span>Overview</span>
             </button>
 
             <button
@@ -149,7 +144,7 @@ const AdminDashboard = () => {
               onClick={() => setActiveSection("messages")}
             >
               <i className="bi bi-envelope"></i>
-              {!sidebarCollapsed && <span>Messages</span>}
+              <span>Messages</span>
             </button>
 
             <button
@@ -159,7 +154,7 @@ const AdminDashboard = () => {
               onClick={() => setActiveSection("admin-management")}
             >
               <i className="bi bi-person-gear"></i>
-              {!sidebarCollapsed && <span>Admin Management</span>}
+              <span>Admin Management</span>
             </button>
             
             <button
@@ -169,7 +164,7 @@ const AdminDashboard = () => {
               onClick={() => setActiveSection("settings")}
             >
               <i className="bi bi-gear"></i>
-              {!sidebarCollapsed && <span>Settings</span>}
+              <span>Settings</span>
             </button>
             
             {adminData && (
