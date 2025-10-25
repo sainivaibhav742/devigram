@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/devigram/static/css/main.e44de412.css",
+    "main.js": "/devigram/static/js/main.24989f39.js",
+    "index.html": "/devigram/index.html",
+    "main.e44de412.css.map": "/devigram/static/css/main.e44de412.css.map",
+    "main.24989f39.js.map": "/devigram/static/js/main.24989f39.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e44de412.css",
+    "static/js/main.24989f39.js"
+  ]
+}
