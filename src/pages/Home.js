@@ -91,6 +91,7 @@ const Home = () => {
     }
   ];
 
+
   const filteredCourses = activeFilter === 'All Courses' ? courses : courses.filter(course => course.category === activeFilter);
 
   return (
@@ -100,23 +101,23 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '80px', paddingBottom: '60px'}}>
         <div className="container" style={{position: 'relative', zIndex: 2}}>
-          <div className="row align-items-center g-5">
-            <div className="col-lg-6">
-              <div className="hero-content">
-                <div className="d-inline-flex align-items-center gap-2 mb-4" style={{background: '#00ff88', borderRadius: '50px', padding: '10px 24px'}}>
-                  <i className="bi bi-check-circle" style={{fontSize: '18px'}}></i>
-                  <span style={{color: '#000', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
+          <div className="row align-items-center g-5 justify-content-center">
+            <div className="col-lg-6 col-12">
+              <div className="hero-content" style={{width: '100%'}}>
+                <div className="hero-badge d-inline-flex align-items-center gap-2 mb-4" style={{background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '50px', padding: '10px 24px'}}>
+                  <i className="bi bi-check-circle-fill" style={{fontSize: '18px', color: '#fff'}}></i>
+                  <span style={{color: '#fff', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
                 </div>
                 
-                <h1 style={{fontSize: 'clamp(3rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '3rem', letterSpacing: '-0.02em'}}>
+                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '3rem', letterSpacing: '-0.02em'}}>
                   DSA Mastery<br/>Bootcamp
                 </h1>
                 
-                <div className="d-flex flex-wrap gap-3 mb-4">
-                  <Link to="/apply" className="btn btn-lg" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)'}}>
+                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'flex-start', width: '100%'}}>
+                  <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
                     Start Learning Now
                   </Link>
-                  <Link to="/courses" className="btn btn-outline-light btn-lg" style={{border: '2px solid rgba(255,255,255,0.5)', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', color: '#fff'}}>
+                  <Link to="/courses" className="btn btn-outline-light btn-lg hero-btn-secondary" style={{border: '2px solid rgba(255,255,255,0.5)', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
                     Explore Courses
                   </Link>
                 </div>
@@ -133,10 +134,10 @@ const Home = () => {
                     </div>
                   </div>
                   
-                  <div style={{background: 'linear-gradient(135deg, #00ff88 0%, #00d97e 100%)', borderRadius: '16px', padding: '20px', marginBottom: '24px', textAlign: 'center'}}>
+                  <div style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '20px', marginBottom: '24px', textAlign: 'center', boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)'}}>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
-                      <i className="bi bi-trophy-fill" style={{fontSize: '1.5rem', color: '#000'}}></i>
-                      <span style={{fontSize: '1.1rem', fontWeight: '700', color: '#000'}}>95% Placement Success</span>
+                      <i className="bi bi-trophy-fill" style={{fontSize: '1.5rem', color: '#ffd700'}}></i>
+                      <span style={{fontSize: '1.1rem', fontWeight: '700', color: '#fff'}}>95% Placement Success</span>
                     </div>
                   </div>
                   
@@ -145,7 +146,7 @@ const Home = () => {
                     <div style={{display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '24px'}}>
                       <span style={{fontSize: '1.75rem', fontWeight: '700', color: '#999', textDecoration: 'line-through'}}>₹50,000/-</span>
                       <span style={{fontSize: '2rem', fontWeight: '900', color: '#000'}}>₹30,000/-</span>
-                      <span style={{background: '#00ff88', padding: '6px 14px', borderRadius: '8px', fontSize: '15px', fontWeight: '700', color: '#000'}}>Save 40%</span>
+                      <span style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '6px 14px', borderRadius: '8px', fontSize: '15px', fontWeight: '700', color: '#fff', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'}}>Save 40%</span>
                     </div>
                     
                     <Link to="/apply" className="btn w-100" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', padding: '20px', fontSize: '1.3rem', fontWeight: '700', borderRadius: '14px', border: 'none', boxShadow: '0 10px 30px rgba(102, 126, 234, 0.4)', transition: 'all 0.3s'}}>
@@ -187,79 +188,90 @@ const Home = () => {
                   align-items: center;
                   justify-content: center;
                   padding: 10px 18px;
-                  background: rgba(255, 255, 255, 0.08);
+                  background: transparent;
                   border-radius: 10px;
-                  backdrop-filter: blur(8px);
                   transition: all 0.3s ease;
                   min-width: 120px;
                 }
                 .brand-logo-wrapper:hover {
-                  background: rgba(255, 255, 255, 0.18);
+                  background: transparent;
                   transform: translateY(-2px);
                 }
               `}</style>
               <div className="brand-slider">
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '35px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '40px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '35px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Adobe_logo.svg" alt="Adobe" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Uber_logo_2018.svg" alt="Uber" style={{height: '20px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png" alt="X (Twitter)" style={{height: '28px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '28px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style={{height: '28px', objectFit: 'contain'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla" style={{height: '32px', objectFit: 'contain'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 
                 {/* Duplicate for seamless loop */}
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '35px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '40px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '28px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '35px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Adobe_logo.svg" alt="Adobe" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Uber_logo_2018.svg" alt="Uber" style={{height: '20px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png" alt="X (Twitter)" style={{height: '28px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '26px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '28px', objectFit: 'contain'}} />
                 </div>
                 <div className="brand-logo-wrapper">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '24px', filter: 'brightness(0) invert(1)'}} />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style={{height: '28px', objectFit: 'contain'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla" style={{height: '32px', objectFit: 'contain'}} />
+                </div>
+                <div className="brand-logo-wrapper">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '32px', objectFit: 'contain'}} />
                 </div>
               </div>
             </div>
@@ -300,6 +312,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
 
       {/* Advantages Section */}
       <section className="advantages-section py-5">
@@ -1157,22 +1170,22 @@ const Home = () => {
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" />
               </div>
               <div className="company-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Adobe_logo.svg" alt="Adobe" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" />
               </div>
               <div className="company-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Tesla_logo.png" alt="Tesla" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png" alt="X (Twitter)" />
               </div>
               <div className="company-card">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" />
               </div>
               <div className="company-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Uber_logo_2018.svg" alt="Uber" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" />
               </div>
               <div className="company-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Spotify_logo_without_text.svg" alt="Spotify" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla" />
               </div>
               <div className="company-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="Database" />
               </div>
             </div>
           </div>

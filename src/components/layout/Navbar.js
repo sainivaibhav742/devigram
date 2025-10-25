@@ -12,6 +12,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { path: '/courses', label: 'Courses' },
     { path: '/campus', label: 'Campus' },
@@ -59,6 +76,21 @@ const Navbar = () => {
       </nav>
 
       <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-nav-header">
+          <Link to="/" className="mobile-nav-brand">
+            <div className="brand-logo">
+              <i className="bi bi-mortarboard-fill"></i>
+            </div>
+            <span className="brand-title">Devigram</span>
+          </Link>
+          <button 
+            className="mobile-nav-close"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <i className="bi bi-x-lg"></i>
+          </button>
+        </div>
         <div className="mobile-nav-content">
           {navLinks.map(link => (
             <Link
