@@ -93,14 +93,7 @@ const Hire = () => {
     }
   ];
 
-  const companies = [
-    { name: 'Google', logo: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=100&h=100&fit=crop', hired: 25 },
-    { name: 'Microsoft', logo: 'https://images.unsplash.com/photo-1633409361618-c73427e4e206?w=100&h=100&fit=crop', hired: 18 },
-    { name: 'Amazon', logo: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=100&h=100&fit=crop', hired: 32 },
-    { name: 'Flipkart', logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop', hired: 15 },
-    { name: 'Zomato', logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop', hired: 12 },
-    { name: 'Paytm', logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100&h=100&fit=crop', hired: 20 }
-  ];
+
 
   const filteredTalent = selectedRole === 'all' ? talentPool : talentPool.filter(person => person.category === selectedRole);
 
