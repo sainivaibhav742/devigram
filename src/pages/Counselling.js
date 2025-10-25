@@ -510,7 +510,6 @@ const Counselling = () => {
                   </div>
                 </div>
                 <div className="cta-actions">
-                  <Link to="/counselling-dashboard" className="btn btn-primary btn-lg">View Dashboard</Link>
                   <Link to="/apply" className="btn btn-outline-light btn-lg">Start Your Journey</Link>
                 </div>
               </div>

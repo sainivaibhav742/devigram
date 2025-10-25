@@ -10,6 +10,40 @@ const adminRoutes = require("./routes/adminRoutes");
 
 dotenv.config();
 
+// Cached MongoDB connection for Vercel serverless
+let cached = global.mongoose;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function connectToDatabase() {
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    const opts = {
+      maxPoolSize: 10,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      family: 4
+    };
+
+    cached.promise = mongoose.connect(process.env.MONGO_URI, opts).then((mongoose) => {
+      return mongoose;
+    });
+  }
+
+  try {
+    cached.conn = await cached.promise;
+    console.log("MongoDB connected successfully");
+    return cached.conn;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
+  }
+}
+
 const app = express();
 
 // Security middleware
@@ -86,34 +120,33 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// MongoDB connection with security options
-if (!process.env.MONGO_URI) {
-  console.error("MONGO_URI is not defined in environment variables");
-  process.exit(1);
-}
-
-mongoose
-  .connect(process.env.MONGO_URI, {
-    maxPoolSize: 10,
-    serverSelectionTimeoutMS: 5000,
-    socketTimeoutMS: 45000,
-    family: 4
-  })
-  .then(() => console.log("MongoDB connected successfully"))
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-    process.exit(1);
-  });
+// Middleware to ensure MongoDB connection for serverless
+app.use(async (req, res, next) => {
+  try {
+    if (!process.env.MONGO_URI) {
+      console.error("MONGO_URI is not defined in environment variables");
+      return res.status(500).json({ message: "Server configuration error" });
+    }
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    res.status(500).json({ message: "Database connection failed" });
+  }
+});
 
 // Routes
 app.use("/apply", applyRoutes);
 app.use("/admin", authLimiter, adminRoutes);
 
-// Start server
+// Start server (only when not running on Vercel serverless)
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
-});
+const isVercel = !!process.env.VERCEL || !!process.env.NOW_REGION;
+if (!isVercel) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+  });
+}
 
 module.exports = app;
