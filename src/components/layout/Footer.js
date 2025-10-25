@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-lg-4">
             <div className="footer-brand">
-              <i className="bi bi-mortarboard-fill"></i>
+              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Devigram logo" className="footer-logo" />
               <span>Devigram</span>
             </div>
             <p>Empowering 10,000+ developers to crack top tech interviews with comprehensive algorithm training and personalized mentorship.</p>
@@ -35,17 +35,14 @@ const Footer = () => {
           <div className="col-lg-2 col-md-6">
             <h5>Company</h5>
             <ul className="footer-links">
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
+              <li><Link to="/apply">Contact</Link></li>
+              <li><Link to="/hire">Careers</Link></li>
             </ul>
           </div>
           
           <div className="col-lg-2 col-md-6">
             <h5>Account</h5>
             <ul className="footer-links">
-              <li><Link to="/login">Sign In</Link></li>
-              <li><Link to="/signup">Sign Up</Link></li>
               <li><Link to="/apply">Apply</Link></li>
               <li><Link to="/admin-login">Admin</Link></li>
             </ul>
@@ -60,10 +57,10 @@ const Footer = () => {
           </div>
           <div className="col-md-6 text-md-end">
             <div className="social-links">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-twitter"></i></a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-linkedin"></i></a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-github"></i></a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-youtube"></i></a>
+              <a href="https://twitter.com/sainivaibhav742" target="_blank" rel="noopener noreferrer"><i className="bi bi-twitter"></i></a>
+              <a href="https://www.linkedin.com/in/sainivaibhav742" target="_blank" rel="noopener noreferrer"><i className="bi bi-linkedin"></i></a>
+              <a href="https://github.com/sainivaibhav742/devigram" target="_blank" rel="noopener noreferrer"><i className="bi bi-github"></i></a>
+              <a href="https://sainivaibhav742.github.io/devigram" target="_blank" rel="noopener noreferrer"><i className="bi bi-youtube"></i></a>
             </div>
           </div>
         </div>

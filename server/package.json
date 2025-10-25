@@ -5,12 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start:https": "node https-server.js",
-    "generate-ssl": "node generate-ssl.js",
     "setup-admin": "node scripts/createAdmin.js",
     "update-admin-password": "node scripts/updateAdminPassword.js",
-    "dev": "NODE_ENV=development node server.js",
-    "prod": "NODE_ENV=production node https-server.js",
+    "dev": "cross-env NODE_ENV=development node server.js",
     "security-audit": "npm audit && echo 'Run npm audit fix for automatic fixes'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,16 +15,21 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^8.1.0",
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

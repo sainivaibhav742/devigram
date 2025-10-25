@@ -4,6 +4,13 @@ const { submitApplication, getApplications } = require("../controllers/applyCont
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
+router.options("/", (req, res) => {
+  // CORS preflight support on Vercel/Serverless
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(200).end();
+});
+
 router.post(
   "/",
   [

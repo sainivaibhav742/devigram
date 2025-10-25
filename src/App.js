@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename={process.env.NODE_ENV === 'production' ? '/devigram' : ''}>
+    <Router basename="/devigram">
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />

@@ -93,14 +93,7 @@ const Hire = () => {
     }
   ];
 
-  const companies = [
-    { name: 'Google', logo: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=100&h=100&fit=crop', hired: 25 },
-    { name: 'Microsoft', logo: 'https://images.unsplash.com/photo-1633409361618-c73427e4e206?w=100&h=100&fit=crop', hired: 18 },
-    { name: 'Amazon', logo: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=100&h=100&fit=crop', hired: 32 },
-    { name: 'Flipkart', logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop', hired: 15 },
-    { name: 'Zomato', logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop', hired: 12 },
-    { name: 'Paytm', logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100&h=100&fit=crop', hired: 20 }
-  ];
+
 
   const filteredTalent = selectedRole === 'all' ? talentPool : talentPool.filter(person => person.category === selectedRole);
 
@@ -275,24 +268,120 @@ const Hire = () => {
         </div>
       </section>
 
-      {/* Trusted Companies */}
+      {/* Trusted by Leading Companies */}
       <section className="trusted-companies py-5">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="section-title">Trusted by Leading Companies</h2>
-            <p className="section-subtitle">Join 500+ companies that have successfully hired through us</p>
+            <p className="section-subtitle">Our learners work at top companies</p>
           </div>
-          
-          <div className="companies-grid">
-            {companies.map((company, index) => (
-              <div key={index} className="company-card">
-                <img src={company.logo} alt={company.name} className="company-logo" />
-                <div className="company-info">
-                  <h4>{company.name}</h4>
-                  <p>{company.hired} developers hired</p>
-                </div>
+
+          <div style={{position: 'relative', overflow: 'hidden', width: '100%'}}>
+            <style>{`
+              @keyframes scroll-brands {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .brand-slider {
+                display: flex;
+                animation: scroll-brands 35s linear infinite;
+                gap: 60px;
+                align-items: center;
+              }
+              .brand-slider:hover {
+                animation-play-state: paused;
+              }
+              .brand-logo-wrapper {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 18px;
+                background: transparent;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                min-width: 120px;
+              }
+              .brand-logo-wrapper:hover {
+                background: transparent;
+                transform: translateY(-2px);
+              }
+            `}</style>
+            <div className="brand-slider">
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '35px', objectFit: 'contain'}} />
               </div>
-            ))}
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '40px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '35px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png" alt="X (Twitter)" style={{height: '28px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '28px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style={{height: '28px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+
+              {/* Duplicate for seamless loop */}
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{height: '35px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style={{height: '40px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style={{height: '35px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png" alt="X (Twitter)" style={{height: '28px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb" style={{height: '28px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" style={{height: '28px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+              <div className="brand-logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flipkart_logo.svg" alt="Flipkart" style={{height: '32px', objectFit: 'contain'}} />
+              </div>
+            </div>
           </div>
         </div>
       </section>

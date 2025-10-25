@@ -12,6 +12,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { path: '/courses', label: 'Courses' },
     { path: '/campus', label: 'Campus' },
@@ -25,11 +42,11 @@ const Navbar = () => {
     <>
       <nav className={`navbar-slim ${isScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-content">
-          <Link to="/" className="nav-brand">
+          <Link to="/" className="nav-brand" aria-label="Devigram">
             <div className="brand-logo">
-              <i className="bi bi-mortarboard-fill"></i>
+              {/* Decorative image: hide from assistive tech, label is on the link */}
+              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="" aria-hidden="true" className="brand-image" />
             </div>
-            <span className="brand-title">Devigram</span>
           </Link>
 
           <div className="nav-links">
@@ -59,6 +76,20 @@ const Navbar = () => {
       </nav>
 
       <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-nav-header">
+          <Link to="/" className="mobile-nav-brand" aria-label="Devigram">
+            <div className="brand-logo">
+              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="" aria-hidden="true" className="brand-image" />
+            </div>
+          </Link>
+          <button 
+            className="mobile-nav-close"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <i className="bi bi-x-lg"></i>
+          </button>
+        </div>
         <div className="mobile-nav-content">
           {navLinks.map(link => (
             <Link
