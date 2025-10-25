@@ -392,11 +392,13 @@
 .success-card {
     background: white;
     border-radius: var(--radius-2xl);
-    padding: 2rem;
+    padding: 0;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--gray-200);
     transition: var(--transition);
     height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .success-card:hover {
@@ -405,11 +407,47 @@
     border-color: var(--primary-200);
 }
 
-.success-header {
+.success-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-50) 0%, rgba(255, 255, 255, 0.8) 100%);
+    z-index: 1;
+}
+
+.success-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.success-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    height: 100%;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+}
+
+.student-profile {
+    display: flex;
+    align-items: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+.avatar-container {
+    position: relative;
+    flex-shrink: 0;
 }
 
 .student-avatar {
@@ -418,61 +456,166 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--primary-500);
-    flex-shrink: 0;
+    transition: var(--transition);
 }
 
-.student-info {
-    flex: 1;
+.success-card:hover .student-avatar {
+    border-color: var(--primary-600);
+    transform: scale(1.05);
 }
 
-.student-info h5 {
+.avatar-ring {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--primary-200);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.student-details h5 {
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: 0.25rem;
+    font-size: 1.1rem;
 }
 
-.university {
+.university-name {
     color: var(--gray-600);
     font-size: 0.9rem;
     margin: 0;
+    font-weight: 500;
 }
 
-.placement-badge {
-    text-align: center;
-    background: var(--primary-50);
-    padding: 0.75rem;
+.placement-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: var(--radius-lg);
     border: 1px solid var(--primary-100);
+    backdrop-filter: blur(10px);
 }
 
-.company {
+.company-logo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-400));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.placement-details {
+    flex: 1;
+}
+
+.company-name {
     display: block;
     font-weight: 700;
     color: var(--primary-700);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 0.25rem;
 }
 
-.package {
-    font-size: 1.2rem;
+.package-amount {
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--primary-600);
 }
 
-.success-story {
+.success-badge {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.story-quote {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.quote-icon {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 28px;
+    height: 28px;
+    background: var(--primary-100);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-600);
+    font-size: 0.9rem;
+    z-index: 2;
+}
+
+.story-text {
     color: var(--gray-700);
     font-style: italic;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-left: 1.5rem;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+    padding-left: 0.5rem;
 }
 
-.success-footer {
-    text-align: center;
+.success-metrics {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-200);
 }
 
-.rating {
+.metric {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray-600);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.metric i {
+    color: var(--primary-500);
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.rating-stars i {
     color: #f59e0b;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+}
+
+.rating-text {
+    color: var(--gray-700);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 0.25rem;
 }
 
 .campus-cta {
@@ -508,46 +651,78 @@
     .campus-hero {
         padding: 6rem 0 3rem;
     }
-    
+
     .floating-cards {
         display: none;
     }
-    
+
     .program-header {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
     }
-    
+
     .program-meta {
         justify-content: center;
     }
-    
-    .success-header {
+
+    .success-content {
+        padding: 1.5rem;
+    }
+
+    .student-profile {
         flex-direction: column;
         text-align: center;
-        gap: 1rem;
+        gap: 0.75rem;
     }
-    
+
+    .placement-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .success-metrics {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .story-quote {
+        margin-bottom: 1rem;
+    }
+
+    .quote-icon {
+        position: static;
+        margin-bottom: 0.5rem;
+        display: inline-flex;
+    }
+
+    .story-text {
+        margin-left: 0;
+        text-align: center;
+        padding-left: 0;
+    }
+
     .feature-card {
         padding: 2rem 1.5rem;
     }
-    
+
     .progress-ring {
         width: 100px;
         height: 100px;
     }
-    
+
     .progress-circle {
         width: 100px;
         height: 100px;
     }
-    
+
     .progress-circle::before {
         width: 70px;
         height: 70px;
     }
-    
+
     .progress-circle span {
         font-size: 1.2rem;
     }
