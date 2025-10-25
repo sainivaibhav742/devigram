@@ -163,10 +163,6 @@ const Campus = () => {
                       <i className="bi bi-people-fill"></i>
                       <span>50K+ Students</span>
                     </div>
-                    <div className="mini-card card-2">
-                      <i className="bi bi-building"></i>
-                      <span>200+ Universities</span>
-                    </div>
                     <div className="mini-card card-3">
                       <i className="bi bi-trophy-fill"></i>
                       <span>Top Placements</span>
@@ -268,7 +264,7 @@ const Campus = () => {
                   <h4>Tech Company Visits</h4>
                   <p>Regular visits to top tech companies like Google, Microsoft, Amazon to understand industry practices and culture.</p>
                   <div className="visit-features">
-                    <span className="feature-tag"><i className="bi bi-building"></i> 15+ Companies</span>
+                    <span className="feature-tag">15+ Companies</span>
                     <span className="feature-tag"><i className="bi bi-people"></i> Interactive Sessions</span>
                     <span className="feature-tag"><i className="bi bi-camera"></i> Behind the Scenes</span>
                   </div>
@@ -392,7 +388,7 @@ const Campus = () => {
                 <h5>Career Fairs</h5>
                 <p>Regular job fairs with 50+ companies offering internships and full-time positions.</p>
                 <div className="activity-stats">
-                  <span><i className="bi bi-building"></i> 50+ Companies</span>
+                  <span>50+ Companies</span>
                   <span><i className="bi bi-calendar"></i> Quarterly</span>
                 </div>
               </div>
@@ -485,9 +481,6 @@ const Campus = () => {
                     </div>
                     
                     <div className="placement-info">
-                      <div className="company-logo">
-                        <i className="bi bi-building-fill"></i>
-                      </div>
                       <div className="placement-details">
                         <span className="company-name">{story.company}</span>
                         <span className="package-amount">{story.package}</span>
@@ -526,6 +519,7 @@ const Campus = () => {
         </div>
       </section>
 
+      
       {/* CTA Section */}
       <section className="campus-cta">
         <div className="container">
