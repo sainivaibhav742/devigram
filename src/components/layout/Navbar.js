@@ -42,11 +42,11 @@ const Navbar = () => {
     <>
       <nav className={`navbar-slim ${isScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-content">
-          <Link to="/" className="nav-brand">
+          <Link to="/" className="nav-brand" aria-label="Devigram">
             <div className="brand-logo">
-              <i className="bi bi-mortarboard-fill"></i>
+              {/* Decorative image: hide from assistive tech, label is on the link */}
+              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="" aria-hidden="true" className="brand-image" />
             </div>
-            <span className="brand-title">Devigram</span>
           </Link>
 
           <div className="nav-links">
@@ -77,11 +77,10 @@ const Navbar = () => {
 
       <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-nav-header">
-          <Link to="/" className="mobile-nav-brand">
+          <Link to="/" className="mobile-nav-brand" aria-label="Devigram">
             <div className="brand-logo">
-              <i className="bi bi-mortarboard-fill"></i>
+              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="" aria-hidden="true" className="brand-image" />
             </div>
-            <span className="brand-title">Devigram</span>
           </Link>
           <button 
             className="mobile-nav-close"
