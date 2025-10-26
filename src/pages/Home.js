@@ -109,9 +109,16 @@ const Home = () => {
                   <span style={{color: '#fff', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
                 </div>
                 
-                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '3rem', letterSpacing: '-0.02em'}}>
+                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '1.5rem', letterSpacing: '-0.02em'}}>
                   DSA Mastery<br/>Bootcamp
                 </h1>
+                
+                {/* Brand Line Added Here */}
+                <div className="brand-line" style={{marginBottom: '2rem'}}>
+                  <p style={{fontSize: '1.3rem', fontWeight: '600', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '0', letterSpacing: '0.5px'}}>
+                    Devigram: Code Your Future, Shape Tomorrow
+                  </p>
+                </div>
                 
                 <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'flex-start', width: '100%'}}>
                   <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
@@ -843,7 +850,7 @@ const Home = () => {
       <section className="advantages py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="section-title">Why Join Devigram? Your Gateway to Tech Excellence</h2>
+            <h2 className="section-title">Devigram : Where Code Meets Career</h2>
             <p className="section-subtitle">Transform your career with industry-leading training and guaranteed results</p>
           </div>
           
