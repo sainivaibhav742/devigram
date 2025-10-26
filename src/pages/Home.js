@@ -850,7 +850,7 @@ const Home = () => {
       <section className="advantages py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="section-title">Devgram : Where Code Meets Career</h2>
+            <h2 className="section-title">Devigram : Where Code Meets Career</h2>
             <p className="section-subtitle">Transform your career with industry-leading training and guaranteed results</p>
           </div>
           
