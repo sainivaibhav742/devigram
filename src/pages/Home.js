@@ -120,7 +120,7 @@ const Home = () => {
                   </p>
                 </div>
 
-                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'flex-start', width: '100%'}}>
+                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'center', width: '100%'}}>
                   <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
                     Start Learning Now
                   </Link>
