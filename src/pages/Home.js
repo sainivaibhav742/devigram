@@ -97,7 +97,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="hero" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '80px', paddingBottom: '60px'}}>
         <div className="container" style={{position: 'relative', zIndex: 2}}>
@@ -108,16 +108,19 @@ const Home = () => {
                   <i className="bi bi-check-circle-fill" style={{fontSize: '18px', color: '#fff'}}></i>
                   <span style={{color: '#fff', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
                 </div>
-                
-                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '1rem', letterSpacing: '-0.02em'}}>
+
+                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '1.5rem', letterSpacing: '-0.02em'}}>
                   DSA Mastery<br/>Bootcamp
                 </h1>
 
-                <p className="hero-tagline" style={{fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', fontWeight: '500', color: 'rgba(255, 255, 255, 0.9)', textAlign: 'center', marginBottom: '3rem', letterSpacing: '0.02em'}}>
-                  Code Your Future, Shape Tomorrow
-                </p>
-                
-                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'center', width: '100%'}}>
+                {/* Brand Line Added Here */}
+                <div className="brand-line" style={{marginBottom: '2rem'}}>
+                  <p style={{fontSize: '1.3rem', fontWeight: '600', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '0', letterSpacing: '0.5px'}}>
+                    Devigram: Code Your Future, Shape Tomorrow
+                  </p>
+                </div>
+
+                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'flex-start', width: '100%'}}>
                   <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
                     Start Learning Now
                   </Link>
@@ -127,7 +130,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="col-lg-6">
               <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
                 <div style={{background: 'rgba(255,255,255,0.98)', borderRadius: '28px', padding: '40px', boxShadow: '0 30px 80px rgba(0,0,0,0.35)', backdropFilter: 'blur(10px)', maxWidth: '480px', width: '100%'}}>
@@ -137,14 +140,14 @@ const Home = () => {
                       <p style={{marginTop: '10px', color: '#667eea', fontWeight: '600', fontSize: '1.1rem', marginBottom: 0}}>Premium Course Access</p>
                     </div>
                   </div>
-                  
+
                   <div style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '20px', marginBottom: '24px', textAlign: 'center', boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)'}}>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
                       <i className="bi bi-trophy-fill" style={{fontSize: '1.5rem', color: '#ffd700'}}></i>
                       <span style={{fontSize: '1.1rem', fontWeight: '700', color: '#fff'}}>95% Placement Success</span>
                     </div>
                   </div>
-                  
+
                   <div style={{borderTop: '2px dashed #ddd', paddingTop: '24px', marginTop: '24px'}}>
                     <div style={{color: '#666', fontSize: '15px', marginBottom: '12px', fontWeight: '500'}}>Total program fee:</div>
                     <div style={{display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '24px'}}>
@@ -152,11 +155,11 @@ const Home = () => {
                       <span style={{fontSize: '2rem', fontWeight: '900', color: '#000'}}>₹30,000/-</span>
                       <span style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '6px 14px', borderRadius: '8px', fontSize: '15px', fontWeight: '700', color: '#fff', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'}}>Save 40%</span>
                     </div>
-                    
+
                     <Link to="/apply" className="btn w-100" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', padding: '20px', fontSize: '1.3rem', fontWeight: '700', borderRadius: '14px', border: 'none', boxShadow: '0 10px 30px rgba(102, 126, 234, 0.4)', transition: 'all 0.3s'}}>
                       Apply Now
                     </Link>
-                    
+
                     <p style={{fontSize: '11px', color: '#999', marginTop: '16px', lineHeight: '1.5', marginBottom: 0, textAlign: 'center'}}>
                       By continuing, you agree to Devigram's Privacy Policy and Terms & Conditions. The fee can be paid via custom payment link at enrollment.
                     </p>
@@ -165,15 +168,19 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Brand Logos Slider */}
           <div style={{borderTop: '1px solid rgba(255,255,255,0.15)', marginTop: '60px', paddingTop: '30px', paddingBottom: '20px'}}>
             <div style={{textAlign: 'center', marginBottom: '20px'}}>
               <p style={{fontSize: '0.8rem', marginBottom: '0', fontWeight: '600', color: 'rgba(255,255,255,0.7)', letterSpacing: '1.5px', textTransform: 'uppercase'}}>Our learners work at top companies</p>
             </div>
-            
+
             <div style={{position: 'relative', overflow: 'hidden', width: '100%'}}>
               <style>{`
+                @keyframes scroll-brands {
+                    0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
                 @keyframes scroll-brands {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
@@ -847,7 +854,7 @@ const Home = () => {
       <section className="advantages py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="section-title">Why Join Devigram? Your Gateway to Tech Excellence</h2>
+            <h2 className="section-title">Devigram : Where Code Meets Career</h2>
             <p className="section-subtitle">Transform your career with industry-leading training and guaranteed results</p>
           </div>
           
