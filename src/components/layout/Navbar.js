@@ -47,6 +47,7 @@ const Navbar = () => {
               {/* Decorative image: hide from assistive tech, label is on the link */}
               <img src={process.env.PUBLIC_URL + '/logo.png'} alt="" aria-hidden="true" className="brand-image" />
             </div>
+            <span className="brand-title">Devigram</span>
           </Link>
 
           <div className="nav-links">
@@ -81,6 +82,7 @@ const Navbar = () => {
             <div className="brand-logo">
               <img src={process.env.PUBLIC_URL + '/logo.png'} alt="" aria-hidden="true" className="brand-image" />
             </div>
+            <span className="brand-title">Devigram</span>
           </Link>
           <button 
             className="mobile-nav-close"

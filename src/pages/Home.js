@@ -109,11 +109,15 @@ const Home = () => {
                   <span style={{color: '#fff', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
                 </div>
                 
-                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '3rem', letterSpacing: '-0.02em'}}>
+                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '1rem', letterSpacing: '-0.02em'}}>
                   DSA Mastery<br/>Bootcamp
                 </h1>
+
+                <p className="hero-tagline" style={{fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', fontWeight: '500', color: 'rgba(255, 255, 255, 0.9)', textAlign: 'center', marginBottom: '3rem', letterSpacing: '0.02em'}}>
+                  Code Your Future, Shape Tomorrow
+                </p>
                 
-                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'flex-start', width: '100%'}}>
+                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'center', width: '100%'}}>
                   <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
                     Start Learning Now
                   </Link>
@@ -574,7 +578,7 @@ const Home = () => {
       <section className="enhanced-statistics py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="section-title">Our Impact in Numbers</h2>
+            <h2 className="section-title" style={{color: 'black !important'}}>Our Impact in Numbers</h2>
             <p className="section-subtitle">Transforming careers with proven results</p>
           </div>
           <div className="row g-4">
@@ -601,7 +605,7 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="stat-content">
-                  <h3 className="enhanced-stat-number">500+</h3>
+                  <h3 className="enhanced-stat-number">20,000+</h3>
                   <p className="enhanced-stat-label">Partner Companies</p>
                   <div className="stat-description">Top tech companies hiring our graduates</div>
                 </div>
@@ -1136,7 +1140,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Global Companies Section */}
+
+            
+      {/* Global Companies Section 
       <section className="global-companies py-5">
         <div className="container">
           <div className="text-center mb-5">
@@ -1190,7 +1196,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Still Not Sure */}
       <section className="not-sure py-5">
