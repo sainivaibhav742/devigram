@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/devigram/static/css/main.0dcafc6e.css",
-    "main.js": "/devigram/static/js/main.24810cba.js",
+    "main.js": "/devigram/static/js/main.fc8c2caf.js",
     "index.html": "/devigram/index.html",
     "main.0dcafc6e.css.map": "/devigram/static/css/main.0dcafc6e.css.map",
-    "main.24810cba.js.map": "/devigram/static/js/main.24810cba.js.map"
+    "main.fc8c2caf.js.map": "/devigram/static/js/main.fc8c2caf.js.map"
   },
   "entrypoints": [
     "static/css/main.0dcafc6e.css",
-    "static/js/main.24810cba.js"
+    "static/js/main.fc8c2caf.js"
   ]
 }
