@@ -96,7 +96,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="hero" style={{
         background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%)', 
@@ -130,19 +130,11 @@ const Home = () => {
                   <i className="bi bi-check-circle-fill" style={{fontSize: '18px', color: '#fff'}}></i>
                   <span style={{color: '#fff', fontWeight: '700', fontSize: '15px', letterSpacing: '0.5px'}}>Job Ready Program</span>
                 </div>
-                
-                <h1 className="hero-title" style={{
-                  fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', 
-                  fontWeight: '900', 
-                  color: '#fff', 
-                  lineHeight: '1.05', 
-                  marginBottom: '1.5rem', 
-                  letterSpacing: '-0.02em',
-                  textShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
-                }}>
+
+                <h1 className="hero-title" style={{fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: '900', color: '#fff', lineHeight: '1.05', marginBottom: '1.5rem', letterSpacing: '-0.02em'}}>
                   DSA Mastery<br/>Bootcamp
                 </h1>
-                
+
                 {/* Brand Line Added Here */}
                 <div className="brand-line" style={{marginBottom: '2rem'}}>
                   <p style={{
@@ -155,23 +147,9 @@ const Home = () => {
                     Devigram: Code Your Future, Shape Tomorrow
                   </p>
                 </div>
-                
-                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'flex-start', width: '100%'}}>
-                  <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{
-                    background: '#fff', 
-                    color: '#6366f1', 
-                    border: 'none', 
-                    padding: '15px 35px', 
-                    fontSize: '1.1rem', 
-                    fontWeight: '700', 
-                    borderRadius: '12px', 
-                    boxShadow: '0 10px 25px rgba(0,0,0,0.2)', 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    textDecoration: 'none',
-                    transition: 'all 0.3s ease'
-                  }}>
+
+                <div className="hero-buttons d-flex flex-wrap gap-3 mb-4" style={{justifyContent: 'center', width: '100%'}}>
+                  <Link to="/apply" className="btn btn-lg hero-btn-primary" style={{background: '#fff', color: '#667eea', border: 'none', padding: '15px 35px', fontSize: '1.1rem', fontWeight: '700', borderRadius: '12px', boxShadow: '0 8px 20px rgba(0,0,0,0.2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none'}}>
                     Start Learning Now
                   </Link>
                   <Link to="/courses" className="btn btn-outline-light btn-lg hero-btn-secondary" style={{
@@ -192,7 +170,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="col-lg-6">
               <div style={{position: 'relative', display: 'flex', justifyContent: 'center'}}>
                 <div style={{
@@ -222,26 +200,15 @@ const Home = () => {
                       <p style={{marginTop: '10px', color: '#6366f1', fontWeight: '600', fontSize: '1.1rem', marginBottom: 0}}>Premium Course Access</p>
                     </div>
                   </div>
-                  
-                  <div style={{
-                    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)', 
-                    borderRadius: '16px', 
-                    padding: '20px', 
-                    marginBottom: '24px', 
-                    textAlign: 'center', 
-                    boxShadow: '0 8px 20px rgba(99, 102, 241, 0.3)'
-                  }}>
+
+                  <div style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '20px', marginBottom: '24px', textAlign: 'center', boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)'}}>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
                       <i className="bi bi-trophy-fill" style={{fontSize: '1.5rem', color: '#ffd700'}}></i>
                       <span style={{fontSize: '1.1rem', fontWeight: '700', color: '#fff'}}>95% Placement Success</span>
                     </div>
                   </div>
-                  
-                  <div style={{
-                    borderTop: '2px dashed #ddd', 
-                    paddingTop: '24px', 
-                    marginTop: '24px'
-                  }}>
+
+                  <div style={{borderTop: '2px dashed #ddd', paddingTop: '24px', marginTop: '24px'}}>
                     <div style={{color: '#666', fontSize: '15px', marginBottom: '12px', fontWeight: '500'}}>Total program fee:</div>
                     <div style={{display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '24px'}}>
                       <span style={{fontSize: '1.75rem', fontWeight: '700', color: '#999', textDecoration: 'line-through'}}>₹50,000/-</span>
@@ -256,29 +223,12 @@ const Home = () => {
                         boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)'
                       }}>Save 40%</span>
                     </div>
-                    
-                    <Link to="/apply" className="btn w-100" style={{
-                      background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)', 
-                      color: '#fff', 
-                      padding: '20px', 
-                      fontSize: '1.3rem', 
-                      fontWeight: '700', 
-                      borderRadius: '14px', 
-                      border: 'none', 
-                      boxShadow: '0 10px 30px rgba(99, 102, 241, 0.4)', 
-                      transition: 'all 0.3s ease'
-                    }}>
+
+                    <Link to="/apply" className="btn w-100" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#fff', padding: '20px', fontSize: '1.3rem', fontWeight: '700', borderRadius: '14px', border: 'none', boxShadow: '0 10px 30px rgba(102, 126, 234, 0.4)', transition: 'all 0.3s'}}>
                       Apply Now
                     </Link>
-                    
-                    <p style={{
-                      fontSize: '11px', 
-                      color: '#999', 
-                      marginTop: '16px', 
-                      lineHeight: '1.5', 
-                      marginBottom: 0, 
-                      textAlign: 'center'
-                    }}>
+
+                    <p style={{fontSize: '11px', color: '#999', marginTop: '16px', lineHeight: '1.5', marginBottom: 0, textAlign: 'center'}}>
                       By continuing, you agree to Devigram's Privacy Policy and Terms & Conditions. The fee can be paid via custom payment link at enrollment.
                     </p>
                   </div>
@@ -286,7 +236,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Brand Logos Slider */}
           <div style={{
             borderTop: '1px solid rgba(255,255,255,0.15)', 
@@ -304,9 +254,13 @@ const Home = () => {
                 textTransform: 'uppercase'
               }}>Our learners work at top companies</p>
             </div>
-            
+
             <div style={{position: 'relative', overflow: 'hidden', width: '100%'}}>
               <style>{`
+                @keyframes scroll-brands {
+                    0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
                 @keyframes scroll-brands {
                   0% { transform: translateX(0); }
                   100% { transform: translateX(-50%); }
@@ -1269,18 +1223,8 @@ const Home = () => {
       }}>
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="section-title" style={{
-              fontSize: '2.5rem',
-              fontWeight: '800',
-              color: '#1e293b',
-              marginBottom: '15px'
-            }}>Our Impact in Numbers</h2>
-            <p className="section-subtitle" style={{
-              fontSize: '1.2rem',
-              color: '#64748b',
-              maxWidth: '600px',
-              margin: '0 auto'
-            }}>Transforming careers with proven results</p>
+            <h2 className="section-title" style={{color: 'black !important'}}>Our Impact in Numbers</h2>
+            <p className="section-subtitle">Transforming careers with proven results</p>
           </div>
           <div className="row g-4">
             <div className="col-lg-3 col-md-6">
@@ -1361,22 +1305,9 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="stat-content">
-                  <h3 className="enhanced-stat-number" style={{
-                    fontSize: '2.5rem',
-                    fontWeight: '800',
-                    color: '#10b981',
-                    marginBottom: '10px'
-                  }}>500+</h3>
-                  <p className="enhanced-stat-label" style={{
-                    fontSize: '1.1rem',
-                    fontWeight: '600',
-                    color: '#1e293b',
-                    marginBottom: '10px'
-                  }}>Partner Companies</p>
-                  <div className="stat-description" style={{
-                    color: '#64748b',
-                    fontSize: '0.9rem'
-                  }}>Top tech companies hiring our graduates</div>
+                  <h3 className="enhanced-stat-number">20,000+</h3>
+                  <p className="enhanced-stat-label">Partner Companies</p>
+                  <div className="stat-description">Top tech companies hiring our graduates</div>
                 </div>
               </div>
             </div>
@@ -2408,12 +2339,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Global Companies Section - Professional and Elegant */}
-      <section className="global-companies py-5" style={{
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
+
+            
+      {/* Global Companies Section 
+      <section className="global-companies py-5">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="section-title" style={{
@@ -2737,7 +2666,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Still Not Sure */}
       <section className="not-sure py-5" style={{
